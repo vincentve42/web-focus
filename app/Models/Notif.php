@@ -11,4 +11,7 @@ class Notif extends Model
         'judul',
         'isi',
     ];
+    public function user() : BelongsTo{
+        return $this->belongsTo(User::class);
+    }
 }
