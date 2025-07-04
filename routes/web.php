@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AutentikasiController;
 use App\Http\Controllers\HomeController;
+use App\Http\Middleware\AdminChecker;
 use App\Http\Middleware\GuestChecker;
 use App\Http\Middleware\LoggedInCheckerAsUser;
 use Illuminate\Support\Facades\Route;
@@ -16,4 +18,7 @@ Route::middleware([LoggedInCheckerAsUser::class])->group(function (){
     Route::get('/home',[HomeController::class, 'HomeUi'])->name('HomeUi');
     Route::get('/absen',[HomeController::class, 'PresensiHomeUi'])->name('PresensiHomeUi');
     Route::post('/absen',[HomeController::class, 'SubmitAbsen'])->name('SubmitAbsen');
+});
+Route::middleware([AdminChecker::class])->group(function (){
+    Route::get('/admin/dashboard',[AdminController::class,'DashboardUi'])->name('DashboardUi');
 });

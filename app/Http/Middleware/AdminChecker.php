@@ -16,7 +16,7 @@ class AdminChecker
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()->admin == 0)
+        if(Auth::check() && Auth::user()->admin == 0)
         {
             return redirect()->back();
         }
