@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('pengeluaran', function(Blueprint $table)
         {
             $table->id();
-            $table->text('image')->default('');
-            $table->text('nama')->default('');
+            $table->text('image');
+            $table->text('nama');
             $table->bigInteger('harga')->default(0);
         });
         Schema::create('kass', function(Blueprint $table)
         {
             $table->id();
             $table->bigInteger('user_id')->references('user_id')->on('users')->onDelete('cascade');
-            $table->text('nama')->default('');
+            $table->text('nama');
             $table->bigInteger('total')->default(0);
             $table->timestamp('created_at');
             $table->timestamp('updated_at');

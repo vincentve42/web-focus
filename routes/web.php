@@ -14,4 +14,6 @@ Route::middleware([GuestChecker::class])->group(function() {
 });
 Route::middleware([LoggedInCheckerAsUser::class])->group(function (){
     Route::get('/home',[HomeController::class, 'HomeUi'])->name('HomeUi');
+    Route::get('/absen',[HomeController::class, 'PresensiHomeUi'])->name('PresensiHomeUi');
+    Route::post('/absen',[HomeController::class, 'SubmitAbsen'])->name('SubmitAbsen');
 });

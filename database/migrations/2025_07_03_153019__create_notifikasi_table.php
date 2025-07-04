@@ -15,8 +15,8 @@ return new class extends Migration
         {
             $table->id();
             $table->bigInteger('user_id')->references('user_id')->on('users')->onDelete('cascade');
-            $table->text('judul')->default('');
-            $table->text('isi')->default('');
+            $table->text('judul');
+            $table->text('isi');
             $table->bigInteger('total')->default(0);
             $table->timestamp('created_at');
             $table->timestamp('updated_at');

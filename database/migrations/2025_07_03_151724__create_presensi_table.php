@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('status')->default(0);
-            $table->text('image')->default('');
+            $table->text('image');
             $table->timestamp('created_at');
             $table->timestamp('updated_at');
         });
