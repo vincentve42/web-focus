@@ -7,7 +7,7 @@
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
          
 </head>
-<body x-data="{kas: false, dokum:false, mobile:false}">
+<body x-data="{kas: false, dokum:false, mobile:false}" class="bg-gray-100">
     
 
 <button @click="mobile = !mobile" data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar" aria-controls="sidebar-multi-level-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
@@ -150,7 +150,135 @@
             </div>  
       </ul>
    </div>
+<div class="sm:pl-80 flex justify-between items-center justify-items-center pb-5 sm:pb-10 border-b border-gray-300 bg-white">
+   <div class="sm:ml-5 ml-5 pt-5">
+         <h1 class="font-bold sm:text-2xl spt-5 text-xl">Welcome Back</h1>
+         <h1 class="sm:text-xl pt-1 text-xs">Hello {{ Auth::user()->name }}! what is your work today??</h1>
+   </div>
+   <div class='sm:rounded-4xl p-1 sm:p-2 w-32 sm:w-64 bg-gray-100 flex'>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-gray-300">
+      <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+      </svg>
+      <input type="text" placeholder="Search" class="pl-3">
 
+         
+         
+   </div>
+   <div class="sm:pr-10 text-xl">
+         
+   </div>
+   
+   
+</div>
+<div class="sm:flex sm:justify-start">
+
+
+<div class="sm:ml-80 shadow-xl h-200 bg-white sm:mt-5 sm:w-250 mt-5 mr-5 ml-5">
+   <div class="flex justify-between">
+      <div>
+         <h1 class="text-xl font-bold p-5">Presensi</h1>
+      </div>
+      <div class="flex p-3">
+         <div class="">
+            <a href="{{ route('BackPage') }}">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black border border-gray-300">
+               <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+               </svg></a>
+
+         </div>
+         <div class="">
+           <a href="{{ route('NextPage') }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black border border-gray-300">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+            </svg></a>
+
+
+         </div>
+          <div class="">
+            
+            
+         </div>
+      </div>
+   </div>
+   <table class="ml-5  justify-start">
+   
+      <tr class="border-b border-black">
+         <th class="sm:p-3 p-1 pl-5 sm:text-base text-xs">ID</th>
+         <th class="sm:p-3 p-1 sm:text-base text-xs">Nama</th>
+         <th class="sm:p-3 p-1 sm:text-base text-xs">Tanggal</th>
+         <th class="sm:p-3 p-1 sm:text-base text-xs">Status</th>
+         <th class="sm:p-3 p-1 sm:text-base text-xs">Bukti</th>
+         <th></th>
+         <th></th>
+      </tr>
+      @foreach ($data_presensi as $single_data )
+      <tr class="border-b border-gray-300">
+         <td class="p-1 text-center sm:text-base text-xs">{{ $single_data->id }}</td>
+         <td class="p-1 text-center sm:text-base text-xs">{{ $single_data->user->name }}</td>
+         <td class="p-1 text-center sm:text-base text-xs">{{ $single_data->created_at }}</td>
+         <td class="p-1 text-center sm:text-base text-xs"> 
+            @if($single_data->status == 0)
+               Hadir
+
+           @elseif($single_data->status == 1)
+               Izin
+            @elseif($single_data->status == 2)
+               Sakit
+
+            @endif
+         </td>
+         <td class="p-1 text-center sm:text-base text-xs">
+            <a href="https://127.0.0.0:8000/public{{ $single_data->image }}">View Image</a>
+         </td>
+         <td class="p-1"><a href="{{ route('DeleteAbsen', ['id' => $single_data->id]) }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-red-500">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+</svg></a>
+</td>
+<td><a href="{{ route('ConfirmAbsen', ['id' => $single_data->id]) }}">
+   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-green-500">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+</svg></a>
+
+</td>
+         </tr>
+      @endforeach
+   </table>
+</div>
+<div class="sm:ml-20 shadow-xl bg-white sm:mt-5 sm:mr-20 mt-5 mr-5 ml-5 sm:w-200">
+   <h1 class="text-xl font-bold p-5">Add Absen</h1>
+      <form action="{{ route('SubmitAbsen') }}" method="post" enctype="multipart/form-data">
+                @csrf
+            
+            <div class="justify-self-center sm:justify-self-start pt-10 sm:pt-0 sm:text-xl sm:ml-9 sm:mt-10 mt-5">
+                    <input type="text" name="" id="" placeholder="Nama Anggota" class="sm:text-left text-center rounded-4xl p-2 bg-gray-100">
+                </div>
+            <div class="sm:flex sm:justify-self-start sm:pt-5 sm:items-center sm:justify-items-center">
+                <div class="justify-self-center sm:justify-self-start pt-10 sm:pt-0 sm:text-xl sm:ml-10">
+                    <label for="status">Status Kehadiran : </label>
+                </div>
+                <div class="justify-self-center sm:justify-self-start sm:ml-2">
+                    <select id="status" name="status" class=" text-xl p-2">
+                        <option value="0">Hadir</option>
+                        <option value="1">Izin</option>
+                        <option value="2">Sakit</option>
+                    
+                    </select>
+                </div>
+            </div>
+            <div class="sm:flex sm:justify-start sm:items-center sm:justify-items-center pt-5 sm:ml-7">
+                <div class="  justify-self-center sm:justify-self-start sm:ml-3">
+                    <label class="text-xl"  for="">Bukti Foto : </label>
+                </div>
+                <div class="justify-self-center sm:justify-self-start  bg-gray-50 rounded-4xl sm:w-96 sm:ml-3 p-1 mt-1">
+                    <input type="file" name="image" id="" class="text-xs sm:text-xl">
+                </div>
+                
+            </div>
+            <div class="justify-self-center sm:justify-self-center  pt-10">
+                    <button type="submit" class="border border-indigo-500 p-1 rounded-4xl w-32 mb-5">Kirim</button>
+                </div>
+            </form>
+</div>
+</div>
 </body>
 
 </html>

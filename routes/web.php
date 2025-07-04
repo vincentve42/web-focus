@@ -21,4 +21,9 @@ Route::middleware([LoggedInCheckerAsUser::class])->group(function (){
 });
 Route::middleware([AdminChecker::class])->group(function (){
     Route::get('/admin/dashboard',[AdminController::class,'DashboardUi'])->name('DashboardUi');
+    Route::get('/admin/presensi',[AdminController::class,'PresensiUi'])->name('PresensiUi');
+    Route::get('/admin/presensi/delete/{id}',[AdminController::class,'DeleteAbsen'])->name('DeleteAbsen');
+    Route::get('/admin/presensi/confirm/{id}',[AdminController::class,'ConfirmAbsen'])->name('ConfirmAbsen');
+    Route::get('/admin/presensi/next',[AdminController::class,'NextPage'])->name('NextPage');
+    Route::get('/admin/presensi/back',[AdminController::class,'BackPage'])->name('BackPage');
 });
