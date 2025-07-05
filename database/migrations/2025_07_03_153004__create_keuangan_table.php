@@ -11,13 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pengeluaran', function(Blueprint $table)
-        {
-            $table->id();
-            $table->text('image');
-            $table->text('nama');
-            $table->bigInteger('harga')->default(0);
-        });
+        
         Schema::create('kass', function(Blueprint $table)
         {
             $table->id();

@@ -35,7 +35,7 @@
   <path d="M4.5 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM14.25 8.625a3.375 3.375 0 1 1 6.75 0 3.375 3.375 0 0 1-6.75 0ZM1.5 19.125a7.125 7.125 0 0 1 14.25 0v.003l-.001.119a.75.75 0 0 1-.363.63 13.067 13.067 0 0 1-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 0 1-.364-.63l-.001-.122ZM17.25 19.128l-.001.144a2.25 2.25 0 0 1-.233.96 10.088 10.088 0 0 0 5.06-1.01.75.75 0 0 0 .42-.643 4.875 4.875 0 0 0-6.957-4.611 8.586 8.586 0 0 1 1.71 5.157v.003Z" />
 </svg>
 
-            <li class="text-xl pl-2">Presensi</li>
+            <li class="text-xl pl-2">Laporan Keuangan</li>
             </div>
             <div class="flex justify-start items-center justify-items-center pt-1 text-white">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-8">
@@ -150,7 +150,7 @@
             </div>  
       </ul>
    </div>
-<div class="sm:pl-80 flex justify-between items-center justify-items-center pb-5 sm:pb-10 border-b border-gray-300 bg-white">
+<div class="sm:pl-80 flex justify-between items-center justify-items-center pb-5 sm:pb-10 border-b border-gray-300 bg-white md:w-500 w-full">
    <div class="sm:ml-5 ml-5 pt-5">
          <h1 class="font-bold sm:text-2xl spt-5 text-xl">Welcome Back</h1>
          <h1 class="sm:text-xl pt-1 text-xs">Hello {{ Auth::user()->name }}! what is your work today??</h1>
@@ -177,21 +177,21 @@
 <div class="sm:flex sm:justify-start">
 
 
-<div class="sm:ml-80 shadow-xl h-200 bg-white sm:mt-5 sm:w-250 mt-5 mr-5 ml-5">
+<div class="sm:ml-80 shadow-xl h-200 bg-white sm:mt-5 sm:w-300 mt-5 sm:mr-5 sm:ml-5">
    <div class="flex justify-between">
       <div>
-         <h1 class="text-xl font-bold p-5">Presensi</h1>
+         <h1 class="text-xl font-bold p-5">Laporan Keuangan</h1>
       </div>
       <div class="flex p-3">
          <div class="">
-            <a href="{{ route('BackPage', ['panel' => 1]) }}">
+            <a href="{{ route('BackPage', ['panel' => 1])  }}">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black border border-gray-300">
                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                </svg></a>
 
          </div>
          <div class="">
-           <a href="{{ route('NextPage', ['panel' => 1]) }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black border border-gray-300">
+           <a href="{{ route('NextPage', ['panel' => 1])  }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black border border-gray-300">
             <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
             </svg></a>
 
@@ -203,79 +203,90 @@
          </div>
       </div>
    </div>
-   <table class="ml-5  justify-start">
+   <table class=" justify-start ml-2 sm:ml-3">
    
       <tr class="border-b border-black">
-         <th class="sm:p-3 p-1 pl-5 sm:text-base text-xs">ID</th>
-         <th class="sm:p-3 p-1 sm:text-base text-xs">Nama</th>
+         
+         <th class="sm:p-3 p-1 sm:text-base text-xs">Keterangan</th>
+         <th class="sm:p-3 p-1 sm:text-base text-xs">Keterangan_Tambahan</th>
+         <th class="sm:p-3 p-1 sm:text-base text-xs">Debit</th>
+         <th class="sm:p-3 p-1 sm:text-base text-xs">Kredit</th>
+         <th class="sm:p-3 p-1 sm:text-base text-xs">Nota</th>
          <th class="sm:p-3 p-1 sm:text-base text-xs">Tanggal</th>
-         <th class="sm:p-3 p-1 sm:text-base text-xs">Status</th>
-         <th class="sm:p-3 p-1 sm:text-base text-xs">Bukti</th>
-         <th></th>
-         <th></th>
       </tr>
-      @foreach ($data_presensi as $single_data )
+      
       <tr class="border-b border-gray-300">
-         <td class="p-1 text-center sm:text-base text-xs">{{ $single_data->id }}</td>
-         <td class="p-1 text-center sm:text-base text-xs">{{ $single_data->user->name }}</td>
-         <td class="p-1 text-center sm:text-base text-xs">{{ $single_data->created_at }}</td>
-         <td class="p-1 text-center sm:text-base text-xs"> 
-            @if($single_data->status == 0)
-               Hadir
-
-           @elseif($single_data->status == 1)
-               Izin
-            @elseif($single_data->status == 2)
-               Sakit
-
-            @endif
-         </td>
+         <td class="p-1 text-center sm:text-base text-xs">{{ $data_keuangan->keterangan_1 }}</td>
+         <td class="p-1 text-center sm:text-base text-xs">{{ $data_keuangan->keterangan_2 }}</td>
+         <td class="p-1 text-center sm:text-base text-xs">{{ number_format($data_keuangan->debit,2,',','.') }}</td>
+         <td class="p-1 text-center sm:text-base text-xs">{{ $data_keuangan->kredit }}</td>
+         <td class="p-1 text-center sm:text-base text-xs">{{ $data_keuangan->created_at }}</td>
+         
          <td class="p-1 text-center sm:text-base text-xs">
-            <a href="https://127.0.0.0:8000/public{{ $single_data->image }}">View Image</a>
+            <a href="https://127.0.0.0:8000/public{{ $data_keuangan->image }}">View Image</a>
          </td>
-         <td class="p-1"><a href="{{ route('DeleteAbsen', ['id' => $single_data->id]) }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-red-500">
+         <td class="p-1"><a href="{{ route('DeleteLaporanKeuangan', ['id' => $data_keuangan->id]) }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="sm:size-10 size-6 text-red-500 p-1">
   <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
 </svg></a>
 </td>
-<td><a href="{{ route('ConfirmAbsen', ['id' => $single_data->id]) }}">
-   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-green-500">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-</svg></a>
 
-</td>
          </tr>
-      @endforeach
+      
    </table>
 </div>
 <div class="sm:ml-20 shadow-xl bg-white sm:mt-5 sm:mr-20 mt-5 mr-5 ml-5 sm:w-200">
-   <h1 class="text-xl font-bold p-5">Add Absen</h1>
-      <form action="{{ route('SubmitAbsen') }}" method="post" enctype="multipart/form-data">
+   <h1 class="text-xl font-bold p-5">Edit Laporan</h1>
+      <form action="{{ route('AddKeuangan') }}" method="post" enctype="multipart/form-data">
                 @csrf
-            
-            <div class="flex items-center justify-items-center justify-self-center sm:justify-self-start mt-10 sm:pt-0 sm:text-xl sm:ml-9 sm:mt-10 mt-5 rounded-4xl p-2 bg-gray-100 sm:w-96 w-64">
+            <div class="flex items-center justify-items-center justify-self-center sm:justify-self-start  sm:pt-0 sm:text-xl sm:ml-9 sm:mt-5 mt-5 rounded-4xl p-2 bg-gray-100 sm:w-96 w-64">
                <div class="p-1 pt-2">
                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-gray-300">
-               <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
                </svg>
+
                </div>
                <div class=" pt-1">
-                    <input type="text" name="name" id="" placeholder="Nama Anggota" class="sm:text-left text-left p-1 ">
+                    <input type="text" name="name" id="" placeholder="Keterangan" class="sm:text-left text-left p-1 sm:w-82 w-64 focus:rounded-4xl">
                </div>
                 </div>
-            <div class="sm:flex sm:justify-self-start sm:pt-5 sm:items-center sm:justify-items-center">
-                <div class="justify-self-center sm:justify-self-start pt-10 sm:pt-0 sm:text-xl sm:ml-10">
-                    <label for="status">Status Kehadiran : </label>
+            <div class="flex items-center justify-items-center justify-self-center sm:justify-self-start  sm:pt-0 sm:text-xl sm:ml-9 sm:mt-5 mt-5 rounded-4xl p-2 bg-gray-100 sm:w-96 w-64">
+               <div class="p-1 pt-2">
+               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-gray-300">
+               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
+               </svg>
+
+               </div>
+               <div class=" pt-1">
+                    <input type="text" name="name_2" id="" placeholder="Keterangan Tambahan" class="sm:text-left text-left p-1 sm:w-82 w-64 focus:rounded-4xl">
+               </div>
                 </div>
-                <div class="justify-self-center sm:justify-self-start sm:ml-2">
-                    <select id="status" name="status" class=" text-xl p-2">
-                        <option value="0">Hadir</option>
-                        <option value="1">Izin</option>
-                        <option value="2">Sakit</option>
-                    
-                    </select>
+            <div class="flex items-center justify-items-center justify-self-center sm:justify-self-start  sm:pt-0 sm:text-xl sm:ml-9 sm:mt-5 mt-5 rounded-4xl p-2 bg-green-100 sm:w-96 w-64 focus:rounded-4xl">
+               <div class="p-1 pt-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-green-500">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+</svg>
+
+
+               </div>
+               <div class=" pt-1">
+                    <input type="number" name="debit" id="" placeholder="Debit" class="sm:text-left text-left text-green-500 p-1 sm:w-82 w-64 focus:rounded-4xl">
+               </div>
                 </div>
-            </div>
-            <div class="sm:flex sm:justify-start sm:items-center sm:justify-items-center pt-5 sm:ml-7">
+               <div class="flex items-center justify-items-center justify-self-center sm:justify-self-start  sm:pt-0 sm:text-xl sm:ml-9 sm:mt-5 mt-5 rounded-4xl p-2 bg-red-100 sm:w-96 w-64">
+               <div class="p-1 pt-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-red-500">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+</svg>
+
+
+               </div>
+               <div class=" pt-1">
+                    <input type="number" name="kredit" id="" placeholder="Kredit" class="sm:text-left text-left text-red-500 p-1 sm:w-82 w-64 focus:rounded-4xl">
+               </div>
+               
+               
+                </div>
+                <div class="sm:flex sm:justify-start sm:items-center sm:justify-items-center pt-5 sm:ml-7">
                 <div class="  justify-self-center sm:justify-self-start sm:ml-3">
                     <label class="text-xl"  for="">Bukti Foto : </label>
                 </div>
@@ -284,7 +295,7 @@
                 </div>
                 
             </div>
-            <div class="justify-self-center sm:justify-self-center  pt-10">
+                <div class="justify-self-center sm:justify-self-center  pt-10">
                     <button type="submit" class="border border-indigo-500 p-1 rounded-4xl w-32 mb-5">Kirim</button>
                 </div>
             </form>

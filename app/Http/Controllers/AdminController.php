@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pengeluaran;
 use App\Models\Presensi;
 use App\Models\User;
 use Exception;
@@ -31,6 +32,11 @@ class AdminController extends Controller
     {
         $selected = Presensi::find($id);
         $selected->status = 3;
+        $image_to_delete = public_path($selected->image);
+        if(file_exists($image_to_delete))
+        {
+            unlink($image_to_delete);
+        }
         $selected->saveQuietly();
     }
      public function SubmitAbsen(Request $request)
@@ -57,7 +63,7 @@ class AdminController extends Controller
         }
         
     }
-    public function NextPage()
+    public function NextPage($panel)
     {
         $cek = session()->get("page");
         $count = session()->get("count");
@@ -67,9 +73,12 @@ class AdminController extends Controller
         session()->put('count',$count);
 
         $data_presensi = Presensi::where('accepted',0)->skip($count)->take($count+=15)->get();
-        return view('admin.presensi',compact('data_presensi'));
+        if($panel == 1)
+        {
+            return view('admin.presensi',compact('data_presensi'));
+        }
     }
-    public function BackPage()
+    public function BackPage($panel)
     {
         $cek = session()->get("page");
         $count = session()->get("count");
@@ -79,6 +88,66 @@ class AdminController extends Controller
         session()->put('count',$count);
 
         $data_presensi = Presensi::where('accepted',0)->skip($count)->take(15)->get();
-        return view('admin.presensi',compact('data_presensi'));
+        if($panel == 1)
+        {
+            return view('admin.presensi',compact('data_presensi'));
+        }
+        
     }
+    // Keuangan
+    public function LaporanKeuanganUI()
+    {
+        $data_keuangan = Pengeluaran::take(15)->get();
+        session()->put('page',1);
+        session()->put('count',15);
+        return view('admin.laporan-keuangan',compact('data_keuangan'));
+    }
+    public function EditLaporanKeuanganUi($id)
+    {
+        $data_keuangan = Pengeluaran::find($id);
+        return view('admin.edit-laporan-keuangan',compact('data_keuangan'));
+        
+    }
+    public function DeleteLaporanKeuangan($id)
+    {
+        $selected = Pengeluaran::find($id)->first();
+
+        $image_to_delete = public_path("nota/".$selected->image);
+        if(file_exists($image_to_delete))
+        {
+            unlink($image_to_delete);
+        }
+        $selected->delete();
+        
+        return redirect()->back();
+    }
+    public function AddKeuangan(Request $request)
+    {
+        $request->validate(
+            ['image' => 'required|mimes:jpg,png,jpeg,jfif']
+        );
+        try
+        {
+            $new_laporan_keuangan = new Pengeluaran;
+            $new_laporan_keuangan->keterangan_1 = $request->name;
+            $new_laporan_keuangan->keterangan_2 = $request->name_2;
+            if($request->name_2 == "")
+            {
+                $new_laporan_keuangan->keterangan_2 = "";
+            }
+            $new_laporan_keuangan->debit = $request->debit;
+            $new_laporan_keuangan->kredit = $request->kredit;
+            $imgname = uniqid(). time() . "." . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move(public_path("nota"), $imgname);
+            $new_laporan_keuangan->image = $imgname;
+            $new_laporan_keuangan->save();
+            return redirect()->back();
+        }
+        
+        catch(Exception $e)
+        {
+            return $e;
+        }
+    }
+    
 }

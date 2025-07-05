@@ -20,10 +20,23 @@ Route::middleware([LoggedInCheckerAsUser::class])->group(function (){
     Route::post('/absen',[HomeController::class, 'SubmitAbsen'])->name('SubmitAbsen');
 });
 Route::middleware([AdminChecker::class])->group(function (){
+    // Dashboard
     Route::get('/admin/dashboard',[AdminController::class,'DashboardUi'])->name('DashboardUi');
+    // Absen / Presensi
     Route::get('/admin/presensi',[AdminController::class,'PresensiUi'])->name('PresensiUi');
     Route::get('/admin/presensi/delete/{id}',[AdminController::class,'DeleteAbsen'])->name('DeleteAbsen');
     Route::get('/admin/presensi/confirm/{id}',[AdminController::class,'ConfirmAbsen'])->name('ConfirmAbsen');
-    Route::get('/admin/presensi/next',[AdminController::class,'NextPage'])->name('NextPage');
-    Route::get('/admin/presensi/back',[AdminController::class,'BackPage'])->name('BackPage');
+
+    // Laporan_Keuangan
+
+    Route::get('/admin/laporan-keuangan',[AdminController::class,'LaporanKeuanganUi'])->name('LaporanKeuanganUi');
+    Route::post('/admin/laporan-keuangan',[AdminController::class,'AddKeuangan'])->name('AddKeuangan');
+    Route::get('/admin/laporan-keuangan/delete/{id}',[AdminController::class,'DeleteLaporanKeuangan'])->name('DeleteLaporanKeuangan');
+    Route::get('/admin/laporan-keuangan/edit/{id}',[AdminController::class,'EditLaporanKeuanganUi'])->name('EditLaporanKeuanganUi');
+   
+    // Page
+
+    Route::get('/admin/presensi/next/{panel}',[AdminController::class,'NextPage'])->name('NextPage');
+    Route::get('/admin/presensi/back/{panel}',[AdminController::class,'BackPage'])->name('BackPage');
+    
 });

@@ -16,9 +16,17 @@ class AdminChecker
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check() && Auth::user()->admin == 0)
+        if(!Auth::user())
         {
-            return redirect()->back();
+            return redirect()->route('DashboardUi');
+        }
+        else
+        {
+            if(Auth::user()->admin == 0)
+            {
+                return redirect()->route('DashboardUi');
+            }
+            
         }
         return $next($request);
     }
