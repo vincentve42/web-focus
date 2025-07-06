@@ -213,5 +213,58 @@ class AdminController extends Controller
         }
         return redirect()->back();
     }
-    
+    public function RewardUser(Request $request)
+    {
+        
+        
+        $cek = User::where('name',$request->name)->count();
+        if($cek > 0)
+        {
+            $data = User::where('name',$request->name)->first();
+            $data->dokumentasi = 0;
+            $data->xp += $request->xp;
+
+            // Cek Level
+
+            if($data->level == 1)
+            {
+                if($data->xp >= 150)
+                {
+                    $data->level = 2;
+                }
+            }
+            if($data->level == 2)
+            {
+                if($data->xp >= 300)
+                {
+                    $data->level = 3;
+                }
+            }
+            if($data->level == 3)
+            {
+                if($data->xp >= 400)
+                {
+                    $data->level = 4;
+               
+                }
+
+                
+            }
+            $data->save();
+            return redirect()->back();
+
+        }
+        else
+        {
+            return redirect()->back()->withErrors('User Tidak Ditemukan');
+        }       
+    }
+    public function ShowKasUser($id)
+    {
+
+    }
+    public function EditKasUser($id)
+    {
+
+    }
 }
