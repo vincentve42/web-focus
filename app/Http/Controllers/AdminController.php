@@ -113,7 +113,7 @@ class AdminController extends Controller
         }
         
     }
-    // Keuangan
+    // Laporan Keuangan
     public function LaporanKeuanganUI()
     {
         $data_keuangan = Pengeluaran::take(15)->get();
@@ -165,20 +165,21 @@ class AdminController extends Controller
         $request->validate(
             ['image' => 'required|mimes:jpg,png,jpeg,jfif']
         );
+        $new_laporan_keuangan = new Pengeluaran;
+        $new_laporan_keuangan->keterangan_1 = $request->name;
+        $new_laporan_keuangan->keterangan_2 = $request->name_2;
+        if($request->name_2 == "")
+        {
+             $new_laporan_keuangan->keterangan_2 = "";
+        }
+        $new_laporan_keuangan->debit = $request->debit;
+        $new_laporan_keuangan->kredit = $request->kredit;
+        $imgname = uniqid(). time() . "." . $request->file('image')->getClientOriginalExtension();
+        $request->file('image')->move(public_path("nota"), $imgname);
+        $new_laporan_keuangan->image = $imgname;
         try
         {
-            $new_laporan_keuangan = new Pengeluaran;
-            $new_laporan_keuangan->keterangan_1 = $request->name;
-            $new_laporan_keuangan->keterangan_2 = $request->name_2;
-            if($request->name_2 == "")
-            {
-                $new_laporan_keuangan->keterangan_2 = "";
-            }
-            $new_laporan_keuangan->debit = $request->debit;
-            $new_laporan_keuangan->kredit = $request->kredit;
-            $imgname = uniqid(). time() . "." . $request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move(public_path("nota"), $imgname);
-            $new_laporan_keuangan->image = $imgname;
+            
             $new_laporan_keuangan->save();
             return redirect()->back();
         }
@@ -189,9 +190,28 @@ class AdminController extends Controller
         }
         
     }
+    // Reward Dokum
     public function InviteDokumUi()
     {
-        
+        $data_user = User::take(15)->get();
+        session()->put('page',1);
+        session()->put('count',15);
+        return view('admin.invite-dokum',compact('data_user'));
+    }
+    public function InviteDokum($id)
+    {
+        $data_user = User::find($id);
+        if($data_user->dokumentasi == 1)
+        {
+            $data_user->dokumentasi = 0;
+            $data_user->save();
+        } 
+        else
+        {
+            $data_user->dokumentasi = 1;
+            $data_user->save();
+        }
+        return redirect()->back();
     }
     
 }

@@ -12,6 +12,7 @@ class Presensi extends Model
         'user_id',
         'status',
         'image',
+        'accepted',
         
     ];
     public function user() : BelongsTo{

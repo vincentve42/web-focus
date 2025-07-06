@@ -180,7 +180,7 @@
 <div class="lg:ml-80 shadow-xl h-200 bg-white lg:mt-5 lg:w-250 mt-5 mr-5 ml-5">
    <div class="flex justify-between">
       <div>
-         <h1 class="text-xl font-bold p-5">Presensi</h1>
+         <h1 class="text-xl font-bold p-5">Invite Dokum</h1>
       </div>
       <div class="flex p-3">
          <div class="">
@@ -206,41 +206,39 @@
    <table class="ml-5  justify-start">
    
       <tr class="border-b border-black">
-         <th class="lg:p-3 p-1 pl-5 lg:text-base text-xs">ID</th>
-         <th class="lg:p-3 p-1 lg:text-base text-xs">Nama</th>
-         <th class="lg:p-3 p-1 lg:text-base text-xs">Tanggal</th>
-         <th class="lg:p-3 p-1 lg:text-base text-xs">Status</th>
-         <th class="lg:p-3 p-1 lg:text-base text-xs">Bukti</th>
-         <th></th>
-         <th></th>
+         <th class=" lg:p-3 p-1 text-base">ID</th>
+         <th class=" lg:p-3 p-1 text-base">Name</th>
+         <th class=" lg:p-3 p-1 text-base">XP</th>
+         <th class=" lg:p-3 p-1 text-base">Level</th>
+         <th class=" lg:p-3 p-1 text-base">Dokum</th>
+         
       </tr>
-      @foreach ($data_presensi as $single_data )
+      @foreach ($data_user as $single_data )
       <tr class="border-b border-gray-300">
-         <td class="p-1 text-center lg:text-base text-xs">{{ $single_data->id }}</td>
-         <td class="p-1 text-center lg:text-base text-xs">{{ $single_data->user->name }}</td>
-         <td class="p-1 text-center lg:text-base text-xs">{{ $single_data->created_at }}</td>
-         <td class="p-1 text-center lg:text-base text-xs"> 
-            @if($single_data->status == 0)
-               Hadir
+         <td class="p-1 text-center lg:text-base text-base">{{ $single_data->id }}</td>
+         <td class="p-1 text-center lg:text-base text-base">{{ $single_data->name }}</td>
+         <td class="p-1 text-center lg:text-base text-base">{{ $single_data->xp }}</td>
+         <td class="p-1 text-center lg:text-base text-base">{{ $single_data->level }}</td>
+         <td class="p-1 text-center lg:text-base text-base">
+            @if($single_data->dokumentasi == 1)
+                  Ya
 
-           @elseif($single_data->status == 1)
-               Izin
-            @elseif($single_data->status == 2)
-               Sakit
+            @else
+                  Tidak
 
             @endif
          </td>
-         <td class="p-1 text-center lg:text-base text-xs">
-            <a href="https://127.0.0.0:8000/public{{ $single_data->image }}">View Image</a>
-         </td>
-         <td class="p-1"><a href="{{ route('DeleteAbsen', ['id' => $single_data->id]) }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-red-500">
-  <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+         <td class="p-1 text-center">
+            @if($single_data->dokumentasi == 1)
+                  <a href="{{ route('InviteDokum',["id" => $single_data->id]) }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-red-500">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
 </svg></a>
-</td>
-<td><a href="{{ route('ConfirmAbsen', ['id' => $single_data->id]) }}">
-   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-green-500">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+
+            @else
+                  <a href="{{ route('InviteDokum',["id" => $single_data->id]) }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-blue-500">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
 </svg></a>
+@endif
 
 </td>
          </tr>
@@ -248,50 +246,73 @@
    </table>
 </div>
 <div class="lg:ml-20 shadow-xl bg-white lg:mt-5 lg:mr-20 mt-5 mr-5 ml-5 lg:w-200">
-   <h1 class="text-xl font-bold p-5">Add Absen</h1>
-      <form action="{{ route('SubmitAbsen') }}" method="post" enctype="multipart/form-data">
+   <h1 class="text-xl font-bold p-5">Reward User</h1>
+      <form action="{{ route('AddKeuangan') }}" method="post" enctype="multipart/form-data">
                 @csrf
-            
-            <div class="flex items-center justify-items-center justify-self-center lg:justify-self-start mt-10 lg:pt-0 lg:text-xl lg:ml-9 lg:mt-10 mt-5 rounded-4xl p-2 bg-gray-100 lg:w-96 w-64">
+            <div class="flex items-center justify-items-center justify-self-center lg:justify-self-start  lg:pt-0 lg:text-xl lg:ml-9 lg:mt-5 mt-5 rounded-4xl p-2 bg-gray-100 lg:w-96 w-64">
                <div class="p-1 pt-2">
                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-gray-300">
-               <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
                </svg>
+
                </div>
                <div class=" pt-1">
-                    <input type="text" name="name" id="" placeholder="Nama Anggota" class="lg:text-left text-left p-1 ">
+                    <input type="text" name="name" id="" placeholder="Keterangan" class="lg:text-left text-left p-1 lg:w-82 w-64 focus:rounded-4xl">
                </div>
                 </div>
-            <div class="lg:flex lg:justify-self-start lg:pt-5 lg:items-center lg:justify-items-center">
-                <div class="justify-self-center lg:justify-self-start pt-10 lg:pt-0 lg:text-xl lg:ml-10">
-                    <label for="status">Status Kehadiran : </label>
+            <div class="flex items-center justify-items-center justify-self-center lg:justify-self-start  lg:pt-0 lg:text-xl lg:ml-9 lg:mt-5 mt-5 rounded-4xl p-2 bg-gray-100 lg:w-96 w-64">
+               <div class="p-1 pt-2">
+               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-gray-300">
+               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
+               </svg>
+
+               </div>
+               <div class=" pt-1">
+                    <input type="text" name="name_2" id="" placeholder="Keterangan Tambahan" class="lg:text-left text-left p-1 lg:w-82 w-64 focus:rounded-4xl">
+               </div>
                 </div>
-                <div class="justify-self-center lg:justify-self-start lg:ml-2">
-                    <select id="status" name="status" class=" text-xl p-2">
-                        <option value="0">Hadir</option>
-                        <option value="1">Izin</option>
-                        <option value="2">Sakit</option>
-                    
-                    </select>
+            <div class="flex items-center justify-items-center justify-self-center lg:justify-self-start  lg:pt-0 lg:text-xl lg:ml-9 lg:mt-5 mt-5 rounded-4xl p-2 bg-green-100 lg:w-96 w-64 focus:rounded-4xl">
+               <div class="p-1 pt-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-green-500">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+</svg>
+
+
+               </div>
+               <div class=" pt-1">
+                    <input type="number" name="debit" id="" placeholder="Debit" class="lg:text-left text-left text-green-500 p-1 lg:w-82 w-64 focus:rounded-4xl">
+               </div>
                 </div>
-            </div>
-            <div class="lg:flex lg:justify-start lg:items-center lg:justify-items-center pt-5 lg:ml-7">
+               <div class="flex items-center justify-items-center justify-self-center lg:justify-self-start  lg:pt-0 lg:text-xl lg:ml-9 lg:mt-5 mt-5 rounded-4xl p-2 bg-red-100 lg:w-96 w-64">
+               <div class="p-1 pt-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-red-500">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+</svg>
+
+
+               </div>
+               <div class=" pt-1">
+                    <input type="number" name="kredit" id="" placeholder="Kredit" class="lg:text-left text-left text-red-500 p-1 lg:w-82 w-64 focus:rounded-4xl">
+               </div>
+               
+               
+                </div>
+                <div class="lg:flex lg:justify-start lg:items-center lg:justify-items-center pt-5 lg:ml-7">
                 <div class="  justify-self-center lg:justify-self-start lg:ml-3">
                     <label class="text-xl"  for="">Bukti Foto : </label>
                 </div>
                 <div class="justify-self-center lg:justify-self-start  bg-gray-50 rounded-4xl lg:w-96 lg:ml-3 p-1 mt-1">
                     <input type="file" name="image" id="" class="text-xs lg:text-xl">
                 </div>
-                
-            </div>
              @if ($errors->any())
-               <div class="pt-5 justify-self-center  lg:text-xs lg:ml-5 lg:justify-self-start text-red-500">
-               <ul>
-               @foreach ($errors->all() as $error)
-               <li>{{ $error }}</li>
-               @endforeach
-               @endif  
-            <div class="justify-self-center lg:justify-self-center  pt-10">
+<div class="pt-5 justify-self-center text-xs lg:text-xs lg:ml-5 lg:justify-self-start text-red-500">
+<ul>
+@foreach ($errors->all() as $error)
+<li>{{ $error }}</li>
+@endforeach
+@endif      
+            </div>
+                <div class="justify-self-center lg:justify-self-center  pt-10">
                     <button type="submit" class="border border-indigo-500 p-1 rounded-4xl w-32 mb-5">Kirim</button>
                 </div>
             </form>

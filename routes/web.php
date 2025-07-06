@@ -21,8 +21,11 @@ Route::middleware([LoggedInCheckerAsUser::class])->group(function (){
 });
 Route::middleware([AdminChecker::class])->group(function (){
     // Dashboard
+
     Route::get('/admin/dashboard',[AdminController::class,'DashboardUi'])->name('DashboardUi');
+    
     // Absen / Presensi
+
     Route::get('/admin/presensi',[AdminController::class,'PresensiUi'])->name('PresensiUi');
     Route::get('/admin/presensi/delete/{id}',[AdminController::class,'DeleteAbsen'])->name('DeleteAbsen');
     Route::get('/admin/presensi/confirm/{id}',[AdminController::class,'ConfirmAbsen'])->name('ConfirmAbsen');
@@ -39,5 +42,10 @@ Route::middleware([AdminChecker::class])->group(function (){
 
     Route::get('/admin/next/{panel}',[AdminController::class,'NextPage'])->name('NextPage');
     Route::get('/admin/back/{panel}',[AdminController::class,'BackPage'])->name('BackPage');
+
+    // Dokumentasi Panel
+    
+    Route::get('admin/invite-user',[AdminController::class, 'InviteDokumUi'])->name('InviteDokumUi');
+    Route::get('admin/invite/{id}',[AdminController::class, 'InviteDokum'])->name('InviteDokum');
     
 });
