@@ -11,12 +11,12 @@
             <div class="flex justify-between">
                 <div class="text-white">
                     <div class="p-6">
-                        <ul class="sm:flex hidden">
+                        <ul class="lg:flex hidden">
                             <li class="font-bold text-xl">Home</li>
                             <li class="font-bold pl-5 text-xl">Presensi</li>
                             <li class="font-bold pl-5 text-xl">Kas</li>
                         </ul>
-                        <button @click="navbar = !navbar;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10 sm:hidden text-black">
+                        <button @click="navbar = !navbar;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10 lg:hidden text-black">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg></button>
                     </div>
@@ -30,7 +30,7 @@
 
             </div>
         </div>
-        <div x-show="navbar" class="sm:hidden bg-indigo-500">
+        <div x-show="navbar" class="lg:hidden bg-indigo-500">
         <ul>
             <li class="font-bold text-xl pl-1 border-b border-white">Home</li>
             <li class="font-bold text-xl pl-1 border-b border-white">Presensi</li>
@@ -38,9 +38,9 @@
             </ul>
        </div> 
        </nav>
-    <div class="sm:flex sm:justify-start">
-        <div class="sm:shadow-xl sm:mt-10 sm:ml-10">
-            <h1 class="sm:text-2xl sm:w-8xl sm:h-190 sm:text-center sm:font-bold sm:p-3"> Kas</h1>
+    <div class="lg:flex lg:justify-start">
+        <div class="lg:shadow-xl lg:mt-10 lg:ml-10">
+            <h1 class="lg:text-2xl lg:w-8xl lg:h-190 lg:text-center lg:font-bold lg:p-3"> Kas</h1>
         </div>
         
     </div>

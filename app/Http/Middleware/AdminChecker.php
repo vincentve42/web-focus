@@ -18,13 +18,13 @@ class AdminChecker
     {
         if(!Auth::user())
         {
-            return redirect()->route('DashboardUi');
+            return redirect()->route('HomeUi');
         }
         else
         {
             if(Auth::user()->admin == 0)
             {
-                return redirect()->route('DashboardUi');
+                return redirect()->route('HomeUi');
             }
             
         }

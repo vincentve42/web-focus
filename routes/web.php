@@ -32,11 +32,12 @@ Route::middleware([AdminChecker::class])->group(function (){
     Route::get('/admin/laporan-keuangan',[AdminController::class,'LaporanKeuanganUi'])->name('LaporanKeuanganUi');
     Route::post('/admin/laporan-keuangan',[AdminController::class,'AddKeuangan'])->name('AddKeuangan');
     Route::get('/admin/laporan-keuangan/delete/{id}',[AdminController::class,'DeleteLaporanKeuangan'])->name('DeleteLaporanKeuangan');
-    Route::get('/admin/laporan-keuangan/edit/{id}',[AdminController::class,'EditLaporanKeuanganUi'])->name('EditLaporanKeuanganUi');
-   
+    Route::get('/admin/editkeuangan/{id}',[AdminController::class,'EditLaporanKeuanganUi'])->name('EditLaporanKeuanganUi');
+    Route::post('/admin/editkeuangan/{id}',[AdminController::class,'EditLaporanKeuangan'])->name('EditKeuangan');
+
     // Page
 
-    Route::get('/admin/presensi/next/{panel}',[AdminController::class,'NextPage'])->name('NextPage');
-    Route::get('/admin/presensi/back/{panel}',[AdminController::class,'BackPage'])->name('BackPage');
+    Route::get('/admin/next/{panel}',[AdminController::class,'NextPage'])->name('NextPage');
+    Route::get('/admin/back/{panel}',[AdminController::class,'BackPage'])->name('BackPage');
     
 });

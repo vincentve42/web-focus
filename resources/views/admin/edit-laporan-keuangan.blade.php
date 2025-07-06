@@ -10,14 +10,14 @@
 <body x-data="{kas: false, dokum:false, mobile:false}" class="bg-gray-100">
     
 
-<button @click="mobile = !mobile" data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar" aria-controls="sidebar-multi-level-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+<button @click="mobile = !mobile" data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar" aria-controls="sidebar-multi-level-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
    <span class="sr-only">Open sidebar</span>
    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
    <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
    </svg>
 </button>
 
-<aside id="sidebar-multi-level-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+<aside id="sidebar-multi-level-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full lg:translate-x-0" aria-label="Sidebar">
    <div class="h-full px-3 py-4 overflow-y-auto bg-indigo-500">
       <ul class="space-y-2 font-medium">
          <img src="{{ asset('asset/focus.png') }}" alt="" class="rounded-full w-32 h-32 justify-self-center">
@@ -150,48 +150,48 @@
             </div>  
       </ul>
    </div>
-<div class="sm:pl-80 flex justify-between items-center justify-items-center pb-5 sm:pb-10 border-b border-gray-300 bg-white md:w-500 w-full">
-   <div class="sm:ml-5 ml-5 pt-5">
-         <h1 class="font-bold sm:text-2xl spt-5 text-xl">Welcome Back</h1>
-         <h1 class="sm:text-xl pt-1 text-xs">Hello {{ Auth::user()->name }}! what is your work today??</h1>
+<div class="lg:pl-80 flex justify-between items-center justify-items-center pb-5 lg:pb-10 border-b border-gray-300 bg-white md:w-500 w-full">
+   <div class="lg:ml-5 ml-5 pt-5">
+         <h1 class="font-bold lg:text-2xl spt-5 text-xl">Welcome Back</h1>
+         <h1 class="lg:text-xl pt-1 text-xs">Hello {{ Auth::user()->name }}! what is your work today??</h1>
    </div>
-   <div class='sm:rounded-4xl p-1 sm:p-2 w-32 sm:w-64 bg-gray-100 flex'>
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black sm:text-gray-300">
+   <div class='lg:rounded-4xl p-1 lg:p-2 w-32 lg:w-64 bg-gray-100 flex'>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black lg:text-gray-300">
       <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
       </svg>
       
-      <input type="text" placeholder="Search" class=" w-32 sm:pl-2 sm:w-64 ">
+      <input type="text" placeholder="Search" class=" w-32 lg:pl-2 lg:w-64 ">
       
-     <button class="sm:hidden"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black">
+     <button class="lg:hidden"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black">
       <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
       </svg></button>
          
          
    </div>
-   <div class="sm:pr-10 text-xl">
+   <div class="lg:pr-10 text-xl">
          
    </div>
    
    
 </div>
-<div class="sm:flex sm:justify-start">
+<div class="lg:flex lg:justify-start">
 
 
-<div class="sm:ml-80 shadow-xl h-200 bg-white sm:mt-5 sm:w-300 mt-5 sm:mr-5 sm:ml-5">
+<div class="lg:ml-80 shadow-xl h-200 bg-white lg:mt-5 lg:w-300 mt-5 lg:mr-5 lg:ml-5">
    <div class="flex justify-between">
       <div>
          <h1 class="text-xl font-bold p-5">Laporan Keuangan</h1>
       </div>
       <div class="flex p-3">
          <div class="">
-            <a href="{{ route('BackPage', ['panel' => 1])  }}">
+            <a href="{{ route('BackPage', ['panel' => 2])  }}">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black border border-gray-300">
                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                </svg></a>
 
          </div>
          <div class="">
-           <a href="{{ route('NextPage', ['panel' => 1])  }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black border border-gray-300">
+           <a href="{{ route('NextPage', ['panel' => 2])  }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black border border-gray-300">
             <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
             </svg></a>
 
@@ -203,29 +203,29 @@
          </div>
       </div>
    </div>
-   <table class=" justify-start ml-2 sm:ml-3">
+   <table class=" justify-start ml-2 lg:ml-3">
    
       <tr class="border-b border-black">
          
-         <th class="sm:p-3 p-1 sm:text-base text-xs">Keterangan</th>
-         <th class="sm:p-3 p-1 sm:text-base text-xs">Keterangan_Tambahan</th>
-         <th class="sm:p-3 p-1 sm:text-base text-xs">Debit</th>
-         <th class="sm:p-3 p-1 sm:text-base text-xs">Kredit</th>
-         <th class="sm:p-3 p-1 sm:text-base text-xs">Nota</th>
-         <th class="sm:p-3 p-1 sm:text-base text-xs">Tanggal</th>
+         <th class="lg:p-3 p-1 lg:text-base text-xs">Keterangan</th>
+         <th class="lg:p-3 p-1 lg:text-base text-xs">Keterangan_Tambahan</th>
+         <th class="lg:p-3 p-1 lg:text-base text-xs">Debit</th>
+         <th class="lg:p-3 p-1 lg:text-base text-xs">Kredit</th>
+         <th class="lg:p-3 p-1 lg:text-base text-xs">Nota</th>
+         <th class="lg:p-3 p-1 lg:text-base text-xs">Tanggal</th>
       </tr>
       
       <tr class="border-b border-gray-300">
-         <td class="p-1 text-center sm:text-base text-xs">{{ $data_keuangan->keterangan_1 }}</td>
-         <td class="p-1 text-center sm:text-base text-xs">{{ $data_keuangan->keterangan_2 }}</td>
-         <td class="p-1 text-center sm:text-base text-xs">{{ number_format($data_keuangan->debit,2,',','.') }}</td>
-         <td class="p-1 text-center sm:text-base text-xs">{{ $data_keuangan->kredit }}</td>
-         <td class="p-1 text-center sm:text-base text-xs">{{ $data_keuangan->created_at }}</td>
+         <td class="p-1 text-center lg:text-base text-xs">{{ $data_keuangan->keterangan_1 }}</td>
+         <td class="p-1 text-center lg:text-base text-xs">{{ $data_keuangan->keterangan_2 }}</td>
+         <td class="p-1 text-center lg:text-base text-xs">Rp.{{ number_format($data_keuangan->debit,2,',','.') }}</td>
+         <td class="p-1 text-center lg:text-base text-xs">Rp.{{ $data_keuangan->kredit }}</td>
+         <td class="p-1 text-center lg:text-base text-xs">{{ $data_keuangan->created_at }}</td>
          
-         <td class="p-1 text-center sm:text-base text-xs">
+         <td class="p-1 text-center lg:text-base text-xs">
             <a href="https://127.0.0.0:8000/public{{ $data_keuangan->image }}">View Image</a>
          </td>
-         <td class="p-1"><a href="{{ route('DeleteLaporanKeuangan', ['id' => $data_keuangan->id]) }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="sm:size-10 size-6 text-red-500 p-1">
+         <td class="p-1"><a href="{{ route('DeleteLaporanKeuangan', ['id' => $data_keuangan->id]) }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="lg:size-10 size-6 text-red-500 p-1">
   <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
 </svg></a>
 </td>
@@ -234,11 +234,12 @@
       
    </table>
 </div>
-<div class="sm:ml-20 shadow-xl bg-white sm:mt-5 sm:mr-20 mt-5 mr-5 ml-5 sm:w-200">
+<div class="lg:ml-20 shadow-xl bg-white lg:mt-5 lg:mr-20 mt-5 mr-5 ml-5 lg:w-200">
    <h1 class="text-xl font-bold p-5">Edit Laporan</h1>
-      <form action="{{ route('AddKeuangan') }}" method="post" enctype="multipart/form-data">
+      <form action="{{ route('EditKeuangan',['id' => $data_keuangan->id]) }}" method="post" enctype="multipart/form-data">
                 @csrf
-            <div class="flex items-center justify-items-center justify-self-center sm:justify-self-start  sm:pt-0 sm:text-xl sm:ml-9 sm:mt-5 mt-5 rounded-4xl p-2 bg-gray-100 sm:w-96 w-64">
+                <input type="hidden" name="id" value="{{ $data_keuangan->id }}">
+            <div class="flex items-center justify-items-center justify-self-center lg:justify-self-start  lg:pt-0 lg:text-xl lg:ml-9 lg:mt-5 mt-5 rounded-4xl p-2 bg-gray-100 lg:w-96 w-64">
                <div class="p-1 pt-2">
                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-gray-300">
                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
@@ -246,10 +247,10 @@
 
                </div>
                <div class=" pt-1">
-                    <input type="text" name="name" id="" placeholder="Keterangan" class="sm:text-left text-left p-1 sm:w-82 w-64 focus:rounded-4xl">
+                    <input type="text" name="name" id="" placeholder="Keterangan" value="{{ $data_keuangan->keterangan_1 }}" class="lg:text-left text-left p-1 lg:w-82 w-64 focus:rounded-4xl">
                </div>
                 </div>
-            <div class="flex items-center justify-items-center justify-self-center sm:justify-self-start  sm:pt-0 sm:text-xl sm:ml-9 sm:mt-5 mt-5 rounded-4xl p-2 bg-gray-100 sm:w-96 w-64">
+            <div class="flex items-center justify-items-center justify-self-center lg:justify-self-start  lg:pt-0 lg:text-xl lg:ml-9 lg:mt-5 mt-5 rounded-4xl p-2 bg-gray-100 lg:w-96 w-64">
                <div class="p-1 pt-2">
                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-gray-300">
                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z" />
@@ -257,10 +258,10 @@
 
                </div>
                <div class=" pt-1">
-                    <input type="text" name="name_2" id="" placeholder="Keterangan Tambahan" class="sm:text-left text-left p-1 sm:w-82 w-64 focus:rounded-4xl">
+                    <input type="text" name="name_2" id="" placeholder="Keterangan Tambahan" value="{{ $data_keuangan->keterangan_2 }}" class="lg:text-left text-left p-1 lg:w-82 w-64 focus:rounded-4xl">
                </div>
                 </div>
-            <div class="flex items-center justify-items-center justify-self-center sm:justify-self-start  sm:pt-0 sm:text-xl sm:ml-9 sm:mt-5 mt-5 rounded-4xl p-2 bg-green-100 sm:w-96 w-64 focus:rounded-4xl">
+            <div class="flex items-center justify-items-center justify-self-center lg:justify-self-start  lg:pt-0 lg:text-xl lg:ml-9 lg:mt-5 mt-5 rounded-4xl p-2 bg-green-100 lg:w-96 w-64 focus:rounded-4xl">
                <div class="p-1 pt-2">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-green-500">
   <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
@@ -269,10 +270,10 @@
 
                </div>
                <div class=" pt-1">
-                    <input type="number" name="debit" id="" placeholder="Debit" class="sm:text-left text-left text-green-500 p-1 sm:w-82 w-64 focus:rounded-4xl">
+                    <input type="number" name="debit" id="" value="{{ $data_keuangan->debit }}" placeholder="Debit" class="lg:text-left text-left text-green-500 p-1 lg:w-82 w-64 focus:rounded-4xl">
                </div>
                 </div>
-               <div class="flex items-center justify-items-center justify-self-center sm:justify-self-start  sm:pt-0 sm:text-xl sm:ml-9 sm:mt-5 mt-5 rounded-4xl p-2 bg-red-100 sm:w-96 w-64">
+               <div class="flex items-center justify-items-center justify-self-center lg:justify-self-start {{ $data_keuangan->kredit}}  lg:pt-0 lg:text-xl lg:ml-9 lg:mt-5 mt-5 rounded-4xl p-2 bg-red-100 lg:w-96 w-64">
                <div class="p-1 pt-2">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-red-500">
   <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
@@ -281,21 +282,27 @@
 
                </div>
                <div class=" pt-1">
-                    <input type="number" name="kredit" id="" placeholder="Kredit" class="sm:text-left text-left text-red-500 p-1 sm:w-82 w-64 focus:rounded-4xl">
+                    <input type="number" name="kredit" value="{{ $data_keuangan->kredit }}" id="" placeholder="Kredit" class="lg:text-left text-left text-red-500 p-1 lg:w-82 w-64 focus:rounded-4xl">
                </div>
                
                
                 </div>
-                <div class="sm:flex sm:justify-start sm:items-center sm:justify-items-center pt-5 sm:ml-7">
-                <div class="  justify-self-center sm:justify-self-start sm:ml-3">
+                <div class="lg:flex lg:justify-start lg:items-center lg:justify-items-center pt-5 lg:ml-7">
+                <div class="  justify-self-center lg:justify-self-start lg:ml-3">
                     <label class="text-xl"  for="">Bukti Foto : </label>
                 </div>
-                <div class="justify-self-center sm:justify-self-start  bg-gray-50 rounded-4xl sm:w-96 sm:ml-3 p-1 mt-1">
-                    <input type="file" name="image" id="" class="text-xs sm:text-xl">
+                <div class="justify-self-center lg:justify-self-start  bg-gray-50 rounded-4xl lg:w-96 lg:ml-3 p-1 mt-1">
+                    <input type="file" name="image" id="" class="text-xs lg:text-xl">
                 </div>
-                
+             @if ($errors->any())
+<div class="pt-5 justify-self-center text-xs lg:text-xs lg:ml-5 lg:justify-self-start text-red-500">
+<ul>
+@foreach ($errors->all() as $error)
+<li>{{ $error }}</li>
+@endforeach
+@endif    
             </div>
-                <div class="justify-self-center sm:justify-self-center  pt-10">
+                <div class="justify-self-center lg:justify-self-center  pt-10">
                     <button type="submit" class="border border-indigo-500 p-1 rounded-4xl w-32 mb-5">Kirim</button>
                 </div>
             </form>

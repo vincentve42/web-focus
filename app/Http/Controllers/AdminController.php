@@ -68,14 +68,20 @@ class AdminController extends Controller
         $cek = session()->get("page");
         $count = session()->get("count");
         
-        $count += 15;
+        
         session()->put('page',$cek++);
         session()->put('count',$count);
 
-        $data_presensi = Presensi::where('accepted',0)->skip($count)->take($count+=15)->get();
+        
         if($panel == 1)
         {
+            $data_presensi = Presensi::where('accepted',0)->skip($count)->take(15)->get();
             return view('admin.presensi',compact('data_presensi'));
+        }
+        if($panel == 2)
+        {
+            $data_keuangan = Pengeluaran::skip($count)->take(15)->get();
+            return view('admin.laporan-keuangan',compact('data_keuangan'));
         }
     }
     public function BackPage($panel)
@@ -83,14 +89,27 @@ class AdminController extends Controller
         $cek = session()->get("page");
         $count = session()->get("count");
         
+        if($cek == 1)
+        {
+            return redirect()->back();
+        }
         $count -= 15;
-        session()->put('page',$cek++);
+        session()->put('page',$cek--);
         session()->put('count',$count);
 
-        $data_presensi = Presensi::where('accepted',0)->skip($count)->take(15)->get();
+        if($cek == 1)
+        {
+            return redirect()->back();
+        }
         if($panel == 1)
         {
+            $data_presensi = Presensi::where('accepted',0)->skip($count)->take(15)->get();
             return view('admin.presensi',compact('data_presensi'));
+        }
+        if($panel == 2)
+        {
+            $data_presensi = Pengeluaran::skip($count)->take(15)->get();
+            return view('admin.laporan-keuangan',compact('data_presensi'));
         }
         
     }
@@ -106,6 +125,26 @@ class AdminController extends Controller
     {
         $data_keuangan = Pengeluaran::find($id);
         return view('admin.edit-laporan-keuangan',compact('data_keuangan'));
+        
+    }
+    public function EditLaporanKeuangan($id,Request $request)
+    {
+       $data_keuangan = Pengeluaran::find($request->id);
+       $data_keuangan->keterangan_1 = $request->name;
+       $data_keuangan->keterangan_2 = $request->name_2;
+       $data_keuangan->debit = $request->debit;
+       $data_keuangan->kredit = $request->kredit;
+       $data_keuangan->image = $request->image;
+
+       try
+       {
+            $data_keuangan->save();
+       }
+       catch(Exception $e)
+       {
+            return $e;
+       }
+       return view('admin.edit-laporan-keuangan', compact('data_keuangan'));
         
     }
     public function DeleteLaporanKeuangan($id)
@@ -148,6 +187,11 @@ class AdminController extends Controller
         {
             return $e;
         }
+        
+    }
+    public function InviteDokumUi()
+    {
+        
     }
     
 }

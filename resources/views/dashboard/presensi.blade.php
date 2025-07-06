@@ -11,12 +11,12 @@
             <div class="flex justify-between">
                 <div class="text-white">
                     <div class="p-6">
-                        <ul class="sm:flex hidden">
+                        <ul class="lg:flex hidden">
                             <li class="font-bold text-xl">Home</li>
                             <li class="font-bold pl-5 text-xl">Presensi</li>
                             <li class="font-bold pl-5 text-xl">Kas</li>
                         </ul>
-                        <button @click="navbar = !navbar;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10 sm:hidden text-black">
+                        <button @click="navbar = !navbar;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10 lg:hidden text-black">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg></button>
                     </div>
@@ -30,7 +30,7 @@
 
             </div>
         </div>
-        <div x-show="navbar" class="sm:hidden bg-indigo-500">
+        <div x-show="navbar" class="lg:hidden bg-indigo-500">
         <ul>
             <li class="font-bold text-xl pl-1 border-b border-white">Home</li>
             <li class="font-bold text-xl pl-1 border-b border-white">Presensi</li>
@@ -38,19 +38,19 @@
             </ul>
        </div> 
        </nav>
-    <div class="sm:flex sm:justify-star bg-gray-100">
-        <div class="sm:shadow-xl sm:mt-10 sm:ml-10  bg-white sm:w-6xl sm:h-190 w-92 ml-3 h-148 mt-3">
-            <h1 class="sm:text-2xl  sm:text-center sm:font-bold sm:p-3 text-center text-xl font-bold"> Riwayat Presensi</h1>
+    <div class="lg:flex lg:justify-star bg-gray-100">
+        <div class="lg:shadow-xl lg:mt-10 lg:ml-10  bg-white lg:w-6xl lg:h-190 w-92 ml-3 h-148 mt-3">
+            <h1 class="lg:text-2xl  lg:text-center lg:font-bold lg:p-3 text-center text-xl font-bold"> Riwayat Presensi</h1>
         </div>
-        <div class="sm:shadow-xl sm:mt-10 sm:ml-10 sm:w-xl  sm:h-190 shadow-xl bg-white w-92 ml-3 mt-5">
-            <h1 class="sm:text-2xl sm:w-xl sm:text-center sm:font-bold sm:p-3 font-bold text-xl ">Presensi</h1>
+        <div class="lg:shadow-xl lg:mt-10 lg:ml-10 lg:w-xl  lg:h-190 shadow-xl bg-white w-92 ml-3 mt-5">
+            <h1 class="lg:text-2xl lg:w-xl lg:text-center lg:font-bold lg:p-3 font-bold text-xl ">Presensi</h1>
             <form action="{{ route('SubmitAbsen') }}" method="post" enctype="multipart/form-data">
                 @csrf
-            <div class="sm:flex sm:justify-self-start sm:pt-10 sm:items-center sm:justify-items-center">
-                <div class="justify-self-center sm:justify-self-start pt-10 sm:pt-0 sm:text-xl sm:ml-10">
+            <div class="lg:flex lg:justify-self-start lg:pt-10 lg:items-center lg:justify-items-center">
+                <div class="justify-self-center lg:justify-self-start pt-10 lg:pt-0 lg:text-xl lg:ml-10">
                     <label for="status">Status Kehadiran : </label>
                 </div>
-                <div class="justify-self-center sm:justify-self-start sm:ml-2">
+                <div class="justify-self-center lg:justify-self-start lg:ml-2">
                     <select id="status" name="status" class=" text-xl p-2">
                         <option value="0">Hadir</option>
                         <option value="1">Izin</option>
@@ -59,16 +59,16 @@
                     </select>
                 </div>
             </div>
-            <div class="sm:flex sm:justify-start sm:items-center sm:justify-items-center pt-5 sm:ml-7">
-                <div class="  justify-self-center sm:justify-self-start sm:ml-3">
+            <div class="lg:flex lg:justify-start lg:items-center lg:justify-items-center pt-5 lg:ml-7">
+                <div class="  justify-self-center lg:justify-self-start lg:ml-3">
                     <label class="text-xl"  for="">Bukti Foto : </label>
                 </div>
-                <div class="justify-self-center sm:justify-self-start  bg-gray-50 rounded-4xl sm:w-96 sm:ml-3 p-1 mt-1">
-                    <input type="file" name="image" id="" class="text-xs sm:text-xl">
+                <div class="justify-self-center lg:justify-self-start  bg-gray-50 rounded-4xl lg:w-96 lg:ml-3 p-1 mt-1">
+                    <input type="file" name="image" id="" class="text-xs lg:text-xl">
                 </div>
                 
             </div>
-            <div class="justify-self-center sm:justify-self-center  pt-10">
+            <div class="justify-self-center lg:justify-self-center  pt-10">
                     <button type="submit" class="border border-indigo-500 p-1 rounded-4xl w-32 mb-5">Kirim</button>
                 </div>
             </form>
