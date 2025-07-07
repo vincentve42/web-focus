@@ -22,21 +22,21 @@
       <ul class="space-y-2 font-medium">
          <img src="{{ asset('asset/focus.png') }}" alt="" class="rounded-full w-32 h-32 justify-self-center">
          <h1 class="text-center text-xl text-white">Focus</h1>
-            <div class="flex justify-start items-center justify-items-center pt-5 text-white">
+            <a href="{{ Route('DashboardUi') }}"><div class="flex justify-start items-center justify-items-center pt-5 text-white">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-8">
             <path fill-rule="evenodd" d="M2.25 13.5a8.25 8.25 0 0 1 8.25-8.25.75.75 0 0 1 .75.75v6.75H18a.75.75 0 0 1 .75.75 8.25 8.25 0 0 1-16.5 0Z" clip-rule="evenodd" />
             <path fill-rule="evenodd" d="M12.75 3a.75.75 0 0 1 .75-.75 8.25 8.25 0 0 1 8.25 8.25.75.75 0 0 1-.75.75h-7.5a.75.75 0 0 1-.75-.75V3Z" clip-rule="evenodd" />
             
             </svg>
             <li class="text-xl pl-2">Dashboard</li>
-            </div>
-            <div class="flex justify-start items-center justify-items-center pt-1 text-white">
+            </div></a>
+            <a href="{{ route('PresensiUi') }}"><div class="flex justify-start items-center justify-items-center pt-1 text-white">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-8">
   <path d="M4.5 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM14.25 8.625a3.375 3.375 0 1 1 6.75 0 3.375 3.375 0 0 1-6.75 0ZM1.5 19.125a7.125 7.125 0 0 1 14.25 0v.003l-.001.119a.75.75 0 0 1-.363.63 13.067 13.067 0 0 1-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 0 1-.364-.63l-.001-.122ZM17.25 19.128l-.001.144a2.25 2.25 0 0 1-.233.96 10.088 10.088 0 0 0 5.06-1.01.75.75 0 0 0 .42-.643 4.875 4.875 0 0 0-6.957-4.611 8.586 8.586 0 0 1 1.71 5.157v.003Z" />
 </svg>
 
             <li class="text-xl pl-2">Presensi</li>
-            </div>
+            </div></a>
             <div class="flex justify-start items-center justify-items-center pt-1 text-white">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-8">
   <path d="M12 7.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" />
@@ -52,8 +52,8 @@
               
             </div>
              <div class="pl-10 text-xl text-white" x-show="kas">
-                     <li>Laporan Keuangan</li>
-                     <li class="pt-1">Tagih Siswa</li>
+                     <a href="{{ route('LaporanKeuanganUi') }}"><li>Laporan Keuangan</li></a>
+                     <a href="{{ route('ShowUserKasUi') }}"><li class="pt-1">Tagih Siswa</li></a>
                </div>
             <div class="flex justify-start items-center justify-items-center pt-1 text-white">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-8">
@@ -68,18 +68,18 @@
               
             </div>   
              <div class="pl-10 text-xl text-white" x-show="dokum">
-                     <li>Invite Anggota</li>
+                     <a href="{{ route('InviteDokumUi') }}"><li>Dokumentasi</li></a>
                      <li class="pt-1">Room Dokumentasi</li>
-                     <li class="pt-1">Reward User</li>
+                     
             </div>  
-            <div class="flex justify-start items-center justify-items-center pt-1 text-white">
+            <a href="{{ route("ChatUi") }}"><div class="flex justify-start items-center justify-items-center pt-1 text-white">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-8">
   <path fill-rule="evenodd" d="M5.25 9a6.75 6.75 0 0 1 13.5 0v.75c0 2.123.8 4.057 2.118 5.52a.75.75 0 0 1-.297 1.206c-1.544.57-3.16.99-4.831 1.243a3.75 3.75 0 1 1-7.48 0 24.585 24.585 0 0 1-4.831-1.244.75.75 0 0 1-.298-1.205A8.217 8.217 0 0 0 5.25 9.75V9Zm4.502 8.9a2.25 2.25 0 1 0 4.496 0 25.057 25.057 0 0 1-4.496 0Z" clip-rule="evenodd" />
 </svg>
 
 
             <li class="text-xl pl-2">Notifikasi</li>
-            </div>  
+            </div>  </a>
       </ul>
    </div>
 </aside>
@@ -87,14 +87,14 @@
 <div class="h-full px-3 py-4 overflow-y-auto bg-indigo-500" x-show="mobile">
       <ul class="space-y-2 font-medium">
          
-            <div class="flex justify-start items-center justify-items-center pt-5 text-white">
+            <a href="{{ Route('DashboardUi') }}"><div class="flex justify-start items-center justify-items-center pt-5 text-white">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-8">
             <path fill-rule="evenodd" d="M2.25 13.5a8.25 8.25 0 0 1 8.25-8.25.75.75 0 0 1 .75.75v6.75H18a.75.75 0 0 1 .75.75 8.25 8.25 0 0 1-16.5 0Z" clip-rule="evenodd" />
             <path fill-rule="evenodd" d="M12.75 3a.75.75 0 0 1 .75-.75 8.25 8.25 0 0 1 8.25 8.25.75.75 0 0 1-.75.75h-7.5a.75.75 0 0 1-.75-.75V3Z" clip-rule="evenodd" />
             
             </svg>
             <li class="text-xl pl-2">Dashboard</li>
-            </div>
+            </div></a>
             <div class="flex justify-start items-center justify-items-center pt-1 text-white">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-8">
   <path d="M4.5 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM14.25 8.625a3.375 3.375 0 1 1 6.75 0 3.375 3.375 0 0 1-6.75 0ZM1.5 19.125a7.125 7.125 0 0 1 14.25 0v.003l-.001.119a.75.75 0 0 1-.363.63 13.067 13.067 0 0 1-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 0 1-.364-.63l-.001-.122ZM17.25 19.128l-.001.144a2.25 2.25 0 0 1-.233.96 10.088 10.088 0 0 0 5.06-1.01.75.75 0 0 0 .42-.643 4.875 4.875 0 0 0-6.957-4.611 8.586 8.586 0 0 1 1.71 5.157v.003Z" />

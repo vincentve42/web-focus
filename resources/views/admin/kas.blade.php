@@ -15,28 +15,26 @@
    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
    <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
    </svg>
-</button>
-
-<aside id="sidebar-multi-level-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full lg:translate-x-0" aria-label="Sidebar">
+</button><aside id="sidebar-multi-level-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full lg:translate-x-0" aria-label="Sidebar">
    <div class="h-full px-3 py-4 overflow-y-auto bg-indigo-500">
       <ul class="space-y-2 font-medium">
          <img src="{{ asset('asset/focus.png') }}" alt="" class="rounded-full w-32 h-32 justify-self-center">
          <h1 class="text-center text-xl text-white">Focus</h1>
-            <div class="flex justify-start items-center justify-items-center pt-5 text-white">
+            <a href="{{ Route('DashboardUi') }}"><div class="flex justify-start items-center justify-items-center pt-5 text-white">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-8">
             <path fill-rule="evenodd" d="M2.25 13.5a8.25 8.25 0 0 1 8.25-8.25.75.75 0 0 1 .75.75v6.75H18a.75.75 0 0 1 .75.75 8.25 8.25 0 0 1-16.5 0Z" clip-rule="evenodd" />
             <path fill-rule="evenodd" d="M12.75 3a.75.75 0 0 1 .75-.75 8.25 8.25 0 0 1 8.25 8.25.75.75 0 0 1-.75.75h-7.5a.75.75 0 0 1-.75-.75V3Z" clip-rule="evenodd" />
             
             </svg>
             <li class="text-xl pl-2">Dashboard</li>
-            </div>
-            <div class="flex justify-start items-center justify-items-center pt-1 text-white">
+            </div></a>
+            <a href="{{ route('PresensiUi') }}"><div class="flex justify-start items-center justify-items-center pt-1 text-white">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-8">
   <path d="M4.5 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM14.25 8.625a3.375 3.375 0 1 1 6.75 0 3.375 3.375 0 0 1-6.75 0ZM1.5 19.125a7.125 7.125 0 0 1 14.25 0v.003l-.001.119a.75.75 0 0 1-.363.63 13.067 13.067 0 0 1-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 0 1-.364-.63l-.001-.122ZM17.25 19.128l-.001.144a2.25 2.25 0 0 1-.233.96 10.088 10.088 0 0 0 5.06-1.01.75.75 0 0 0 .42-.643 4.875 4.875 0 0 0-6.957-4.611 8.586 8.586 0 0 1 1.71 5.157v.003Z" />
 </svg>
 
             <li class="text-xl pl-2">Presensi</li>
-            </div>
+            </div></a>
             <div class="flex justify-start items-center justify-items-center pt-1 text-white">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-8">
   <path d="M12 7.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" />
@@ -52,8 +50,8 @@
               
             </div>
              <div class="pl-10 text-xl text-white" x-show="kas">
-                     <li>Laporan Keuangan</li>
-                     <li class="pt-1">Tagih Siswa</li>
+                     <a href="{{ route('LaporanKeuanganUi') }}"><li>Laporan Keuangan</li></a>
+                     <a href="{{ route('ShowUserKasUi') }}"><li class="pt-1">Tagih Siswa</li></a>
                </div>
             <div class="flex justify-start items-center justify-items-center pt-1 text-white">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-8">
@@ -68,22 +66,21 @@
               
             </div>   
              <div class="pl-10 text-xl text-white" x-show="dokum">
-                     <li>Invite Anggota</li>
+                     <a href="{{ route('InviteDokumUi') }}"><li>Dokumentasi</li></a>
                      <li class="pt-1">Room Dokumentasi</li>
-                     <li class="pt-1">Reward User</li>
+                     
             </div>  
-            <div class="flex justify-start items-center justify-items-center pt-1 text-white">
+            <a href="{{ route("ChatUi") }}"><div class="flex justify-start items-center justify-items-center pt-1 text-white">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-8">
   <path fill-rule="evenodd" d="M5.25 9a6.75 6.75 0 0 1 13.5 0v.75c0 2.123.8 4.057 2.118 5.52a.75.75 0 0 1-.297 1.206c-1.544.57-3.16.99-4.831 1.243a3.75 3.75 0 1 1-7.48 0 24.585 24.585 0 0 1-4.831-1.244.75.75 0 0 1-.298-1.205A8.217 8.217 0 0 0 5.25 9.75V9Zm4.502 8.9a2.25 2.25 0 1 0 4.496 0 25.057 25.057 0 0 1-4.496 0Z" clip-rule="evenodd" />
 </svg>
 
 
             <li class="text-xl pl-2">Notifikasi</li>
-            </div>  
+            </div>  </a>
       </ul>
    </div>
 </aside>
-
 <div class="h-full px-3 py-4 overflow-y-auto bg-indigo-500" x-show="mobile">
       <ul class="space-y-2 font-medium">
          
@@ -155,19 +152,24 @@
          <h1 class="font-bold lg:text-2xl spt-5 text-xl">Welcome Back</h1>
          <h1 class="lg:text-xl pt-1 text-xs">Hello {{ Auth::user()->name }}! what is your work today??</h1>
    </div>
+   <form action="{{ route('Search', ['panel' => 4]) }}" method="post">
+      @csrf
    <div class='lg:rounded-4xl p-1 lg:p-2 w-32 lg:w-64 bg-gray-100 flex'>
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black lg:text-gray-300">
-      <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
-      </svg>
       
-      <input type="text" placeholder="Search" class=" w-32 lg:pl-2 lg:w-64 ">
-      
-     <button class="lg:hidden"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black">
+      <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black lg:text-gray-300">
       <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
       </svg></button>
+      
+      <input type="text" placeholder="Search" name="search" class=" w-32 lg:pl-2 lg:w-64 ">
+      
+     <button type="submit" class="lg:hidden"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black">
+      <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
+      </svg></button>
+      
          
          
    </div>
+   </form>  
    <div class="lg:pr-10 text-xl">
          
    </div>
@@ -177,21 +179,21 @@
 <div class="lg:flex lg:justify-start">
 
 
-<div class="lg:ml-80 shadow-xl h-200 bg-white lg:mt-5 lg:w-250 mt-5 mr-5 ml-5">
+<div class="lg:ml-80 shadow-xl h-230 sm:h-200 bg-white lg:mt-5 lg:w-250 mt-5 mr-5 ml-5">
    <div class="flex justify-between">
       <div>
-         <h1 class="text-xl font-bold p-5">Invite Dokum</h1>
+         <h1 class="text-xl font-bold p-5">Edit Kas Anggota : {{ $user->name }}</h1>
       </div>
       <div class="flex p-3">
          <div class="">
-            <a href="{{ route('BackPage', ['panel' => 1]) }}">
+            <a href="{{ route('BackPage', ['panel' => 4]) }}">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black border border-gray-300">
                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                </svg></a>
 
          </div>
          <div class="">
-           <a href="{{ route('NextPage', ['panel' => 1]) }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black border border-gray-300">
+           <a href="{{ route('NextPage', ['panel' => 4]) }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black border border-gray-300">
             <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
             </svg></a>
 
@@ -207,70 +209,74 @@
    
       <tr class="border-b border-black">
          <th class=" lg:p-3 p-1 text-base">ID</th>
-         <th class=" lg:p-3 p-1 text-base">Name</th>
-         <th class=" lg:p-3 p-1 text-base">XP</th>
-         <th class=" lg:p-3 p-1 text-base">Level</th>
-         <th class=" lg:p-3 p-1 text-base">Dokum</th>
+         <th class=" lg:p-3 p-1 text-base">Total</th>
+         <th class=" lg:p-3 p-1 text-base">Status Pembayaran</th>
+         
          
       </tr>
+      
       @foreach ($data_user as $single_data )
       <tr class="border-b border-gray-300">
-         <td class="p-1 text-center lg:text-base text-base">{{ $single_data->id }}</td>
-         <td class="p-1 text-center lg:text-base text-base">{{ $single_data->name }}</td>
-         <td class="p-1 text-center lg:text-base text-base">{{ $single_data->xp }}</td>
-         <td class="p-1 text-center lg:text-base text-base">{{ $single_data->level }}</td>
+         <td class="p-1 text-center lg:text-base text-base">{{ CheckMonth($single_data->bulan )}}</td>
+         <td class="p-1 text-center lg:text-base text-base">Rp.{{ number_format($single_data->total,2,',','.') }}</td>
          <td class="p-1 text-center lg:text-base text-base">
-            @if($single_data->dokumentasi == 1)
-                  Ya
+          @if($single_data->bayar == 1 )
+                  
+                   Ada
+                  
+                  @break
 
-            @else
-                  Tidak
+               @elseif( $single_data->bayar == 2)
+               
 
-            @endif
+                  Tidak Ada
+               
+               @else    
+              
+                  Belum di Set
+               
+               
+               @endif
+               
+            
          </td>
-         <td class="p-1 text-center">
-            @if($single_data->dokumentasi == 1)
-                  <a href="{{ route('InviteDokum',["id" => $single_data->id]) }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-red-500">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
-</svg></a>
-
-            @else
-                  <a href="{{ route('InviteDokum',["id" => $single_data->id]) }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-blue-500">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
-</svg></a>
-@endif
-
-</td>
-         </tr>
+   
+      </tr>
       @endforeach
    </table>
 </div>
 <div class="lg:ml-20 shadow-xl bg-white lg:mt-5 lg:mr-20 mt-5 mr-5 ml-5 lg:w-200">
-   <h1 class="text-xl font-bold p-5">Reward User</h1>
-      <form action="{{ route('RewardUser') }}" method="post" enctype="multipart/form-data">
+   <h1 class="text-xl font-bold p-5">Set Kas</h1>
+      <form action="{{ route('EditKasUser',['id' => $user->id]) }}" method="post" enctype="multipart/form-data">
                 @csrf
-            <div class="flex items-center justify-items-center justify-self-center lg:justify-self-start  lg:pt-0 lg:text-xl lg:ml-9 lg:mt-5 mt-5 rounded-4xl p-2 bg-gray-100 lg:w-96 w-64">
+            <div class="flex items-center justify-items-center justify-self-center lg:justify-self-start  lg:pt-0 lg:text-xl lg:ml-9 lg:mt-5 mt-5 rounded-4xl p-2 bg-blue-100 lg:w-48 w-48">
                <div class="p-1 pt-2">
-               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-gray-300">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-blue-500">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
 </svg>
+
 
 
                </div>
                <div class=" pt-1">
-                    <input type="text" name="name" id="" placeholder="Username" class="lg:text-left text-left p-1 lg:w-82 w-64 focus:rounded-4xl">
+                  <select name="month" id="">
+                     
+                     @foreach ($data_user as $single_datas )
+                        <option value="{{ $single_datas->bulan }}">{{ CheckMonth($single_datas->bulan) }}</option>
+                     @endforeach
+                  </select>
                </div>
                 </div>
             <div class="flex items-center justify-items-center justify-self-center lg:justify-self-start  lg:pt-0 lg:text-xl lg:ml-9 lg:mt-5 mt-5 rounded-4xl p-2 bg-blue-100 lg:w-96 w-64">
                <div class="p-1 pt-2">
                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-blue-500">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
+   <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" />
 </svg>
 
 
                </div>
                <div class=" pt-1">
-                    <input type="text" name="xp" id="" placeholder="Amount" class="lg:text-left text-left p-1 lg:w-82 w-64 focus:rounded-4xl text-blue-500">
+                    <input type="text" name="amount" id="" placeholder="Amount" class="lg:text-left text-left p-1 lg:w-82 w-64 focus:rounded-4xl text-blue-500">
                </div>
                 </div>
             <div>

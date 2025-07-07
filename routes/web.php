@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AutentikasiController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\HomeController;
 use App\Http\Middleware\AdminChecker;
 use App\Http\Middleware\GuestChecker;
@@ -48,5 +49,19 @@ Route::middleware([AdminChecker::class])->group(function (){
     Route::get('admin/invite-user',[AdminController::class, 'InviteDokumUi'])->name('InviteDokumUi');
     Route::post('admin/invite-user',[AdminController::class, 'RewardUser'])->name('RewardUser');
     Route::get('admin/invite/{id}',[AdminController::class, 'InviteDokum'])->name('InviteDokum');
+
+    // Kas
+
+    Route::get('admin/user-kas',[AdminController::class, 'ShowUserKasUi'])->name('ShowUserKasUi');
+    Route::get('admin/edit-kas/{id}',[AdminController::class, 'ShowKasUser'])->name('ShowKasUser');
+    Route::post('admin/edit-kas/{id}',[AdminController::class, 'EditKasUser'])->name('EditKasUser');
+
+    // nOTIF
+
+    Route::post('home/dokum',[ChatController::class, 'ChatUi'])->name('ChatUi');
+
+    // Search
+
+    Route::post('admin/search/{panel}',[AdminController::class, 'Search'])->name('Search');
     
 });

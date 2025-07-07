@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kas;
+use App\Models\Notif;
 use App\Models\Pengeluaran;
 use App\Models\Presensi;
 use App\Models\User;
@@ -16,9 +18,9 @@ class AdminController extends Controller
     }
     public function PresensiUi()
     {
-        $data_presensi = Presensi::where('accepted',0)->skip(0)->take(15)->get();
+        $data_presensi = Presensi::where('accepted',0)->skip(0)->take(20)->get();
         session()->put('page',1);
-        session()->put('count',15);
+        session()->put('count',20);
         return view('admin.presensi',compact('data_presensi'));
     }
     public function ConfirmAbsen($id)
@@ -26,17 +28,28 @@ class AdminController extends Controller
         $selected = Presensi::find($id);
         $selected->accepted = 1;
         $selected->saveQuietly();
+        $data = $selected->user;
+        $judul = "Naik Level";
+        $isi = "Absen anda diterima, silahkan hubungi pengurus jika ada kesalahan";
+        SendNotif($data, $judul, $isi, 0);
         return redirect()->back();
     }
     public function DeleteAbsen($id)
     {
         $selected = Presensi::find($id);
+        $data = $selected->user;
         $selected->status = 3;
         $image_to_delete = public_path($selected->image);
         if(file_exists($image_to_delete))
         {
             unlink($image_to_delete);
         }
+        // Notifikasi
+         
+        $judul = "Naik Level";
+        $isi = "Absen anda ditolak, silahkan hubungi pengurus jika ada kesalahan";
+        SendNotif($data, $judul, $isi, 0);
+        //
         $selected->saveQuietly();
     }
      public function SubmitAbsen(Request $request)
@@ -53,6 +66,7 @@ class AdminController extends Controller
         $presensi->image = "presensi/".$imgname;
         $presensi->status = $request->status;
         $check->save();
+        
         try{
             $presensi->save();
             return redirect()->back();
@@ -67,7 +81,7 @@ class AdminController extends Controller
     {
         $cek = session()->get("page");
         $count = session()->get("count");
-        
+        $count += 20;
         
         session()->put('page',$cek++);
         session()->put('count',$count);
@@ -75,25 +89,39 @@ class AdminController extends Controller
         
         if($panel == 1)
         {
-            $data_presensi = Presensi::where('accepted',0)->skip($count)->take(15)->get();
+            $data_presensi = Presensi::where('accepted',0)->skip($count)->take(20)->get();
             return view('admin.presensi',compact('data_presensi'));
+            //return $count;
         }
         if($panel == 2)
         {
-            $data_keuangan = Pengeluaran::skip($count)->take(15)->get();
+            $data_keuangan = Pengeluaran::skip($count)->take(20)->get();
             return view('admin.laporan-keuangan',compact('data_keuangan'));
+            //return $count;
         }
+        if($panel == 3)
+        {
+            $data_user = User::skip($count)->take(20)->get();
+            return view('admin.invite-dokum',compact('data_user'));
+            // fOR Debugging
+            //return $count;
+        }
+        if($panel == 4)
+        {
+            $data_user = User::skip($count)->take(20)->get();
+            return view('admin.user-kas',compact('data_user'));
+            // fOR Debugging
+            //return $count;
+        }
+        
     }
     public function BackPage($panel)
     {
         $cek = session()->get("page");
         $count = session()->get("count");
         
-        if($cek == 1)
-        {
-            return redirect()->back();
-        }
-        $count -= 15;
+        
+        $count -= 20;
         session()->put('page',$cek--);
         session()->put('count',$count);
 
@@ -103,22 +131,35 @@ class AdminController extends Controller
         }
         if($panel == 1)
         {
-            $data_presensi = Presensi::where('accepted',0)->skip($count)->take(15)->get();
+            $data_presensi = Presensi::where('accepted',0)->skip($count)->take(20)->get();
             return view('admin.presensi',compact('data_presensi'));
         }
         if($panel == 2)
         {
-            $data_presensi = Pengeluaran::skip($count)->take(15)->get();
+            $data_presensi = Pengeluaran::skip($count)->take(20)->get();
             return view('admin.laporan-keuangan',compact('data_presensi'));
         }
+        if($panel == 3)
+        {
+            $data_user = User::skip($count)->take(20)->get();
+            return view('admin.invite-dokum',compact('data_user'));
+        }
+        if($panel == 4)
+        {
+            $data_user = User::skip($count)->take(20)->get();
+            return view('admin.user-kas',compact('data_user'));
+            // fOR Debugging
+            //return $count;
+        }
+        
         
     }
     // Laporan Keuangan
     public function LaporanKeuanganUI()
     {
-        $data_keuangan = Pengeluaran::take(15)->get();
+        $data_keuangan = Pengeluaran::take(20)->get();
         session()->put('page',1);
-        session()->put('count',15);
+        session()->put('count',20);
         return view('admin.laporan-keuangan',compact('data_keuangan'));
     }
     public function EditLaporanKeuanganUi($id)
@@ -193,9 +234,9 @@ class AdminController extends Controller
     // Reward Dokum
     public function InviteDokumUi()
     {
-        $data_user = User::take(15)->get();
+        $data_user = User::take(20)->get();
         session()->put('page',1);
-        session()->put('count',15);
+        session()->put('count',20);
         return view('admin.invite-dokum',compact('data_user'));
     }
     public function InviteDokum($id)
@@ -223,14 +264,27 @@ class AdminController extends Controller
             $data = User::where('name',$request->name)->first();
             $data->dokumentasi = 0;
             $data->xp += $request->xp;
+            try
+             {
+                $judul = "Mendapatkan Poin";
+                $isi = "Anda telah mendapatkan sebanyak ".$request->xp." Poin dari hasil dokumentasi anda";
+                SendNotif($data, $judul, $isi, 0);
+            }
+            catch(Exception $e)
+            {
+                return $e;
+            }
 
             // Cek Level
 
             if($data->level == 1)
             {
-                if($data->xp >= 150)
+                if($data->xp >= 200)
                 {
                     $data->level = 2;
+                    $judul = "Naik Level";
+                    $isi = "Anda berhasil naik ke level 2!";
+                    SendNotif($data, $judul, $isi, 0);
                 }
             }
             if($data->level == 2)
@@ -238,6 +292,9 @@ class AdminController extends Controller
                 if($data->xp >= 300)
                 {
                     $data->level = 3;
+                    $judul = "Naik Level";
+                    $isi = "Anda berhasil naik ke level 3!";
+                    SendNotif($data, $judul, $isi, 0);
                 }
             }
             if($data->level == 3)
@@ -245,6 +302,9 @@ class AdminController extends Controller
                 if($data->xp >= 400)
                 {
                     $data->level = 4;
+                    $judul = "Naik Level";
+                    $isi = "Anda berhasil naik ke level 3!";
+                    SendNotif($data, $judul, $isi, 0);
                
                 }
 
@@ -259,12 +319,62 @@ class AdminController extends Controller
             return redirect()->back()->withErrors('User Tidak Ditemukan');
         }       
     }
+    public function ShowUserKasUi()
+    {
+        $data_user = User::take(20)->get();
+        
+        session()->put('page',1);
+        session()->put('count',20);
+        return view('admin.user-kas',compact('data_user'));
+    }
     public function ShowKasUser($id)
     {
+        $user = User::find($id)->first();
+        $data_user = $user->kas;
 
+       // return dd($data_user);
+
+        //return dd($data_user);
+         return view('admin.kas',compact('user','data_user'));
     }
-    public function EditKasUser($id)
+    public function EditKasUser($id,Request $request)
     {
-
+        $data_yg_edit = Kas::where('user_id',$id)->where('bulan', $request->month)->first();
+        $data_yg_edit->total = $request->amount;
+        $data_yg_edit->bayar = 2;
+       
+        $data_yg_edit->save();
+    }
+    public function Search($panel, Request $request)
+    {
+        if($panel == 1)
+        {
+            $data_gg = User::where('name', $request->search)->first();
+            $data_presensi = Presensi::where('user_id',$data_gg->id)->get();
+            //return dd($data_presensi);
+            return view('admin.presensi',compact('data_presensi'));
+            //return $count;
+        }
+        if($panel == 2)
+        {
+            $data_keuangan = Pengeluaran::where('keterangan_1',$request->search)->get();
+            return view('admin.laporan-keuangan',compact('data_keuangan'));
+            //return $count;
+        }
+        if($panel == 3)
+        {
+            $data_user = User::where('name',$request->search)->get();
+            return view('admin.invite-dokum',compact('data_user'));
+            // fOR Debugging
+            //return $count;
+        }
+        if($panel == 4)
+        {
+            $data_user = User::where('name',$request->search)->get();
+            return view('admin.user-kas',compact('data_user'));
+            // fOR Debugging
+            //return $count;
+        }
+        
     }
 }

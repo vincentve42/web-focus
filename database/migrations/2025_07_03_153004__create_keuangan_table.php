@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         
-        Schema::create('kass', function(Blueprint $table)
+        Schema::create('kas', function(Blueprint $table)
         {
             $table->id();
             $table->bigInteger('user_id')->references('user_id')->on('users')->onDelete('cascade');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kas;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -31,9 +32,22 @@ class AutentikasiController extends Controller
         $newuser->name = $request->name;
         $newuser->email = $request->email;
         $newuser->password = $request->password;
+
+        
+
+        // create kas
+        
         try
         {
             $newuser->save();
+            for($i=1; $i<12; $i++)
+            {
+                $kas = new Kas;
+                $kas->bulan = $i;
+                $kas->user()->associate($newuser);
+                $kas->save();
+
+            }
             return redirect()->route('LoginUi');
         }
         catch(Exception $e)

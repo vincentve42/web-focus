@@ -155,19 +155,24 @@
          <h1 class="font-bold lg:text-2xl spt-5 text-xl">Welcome Back</h1>
          <h1 class="lg:text-xl pt-1 text-xs">Hello {{ Auth::user()->name }}! what is your work today??</h1>
    </div>
-   <div class='lg:rounded-4xl p-1 lg:p-2 w-32 lg:w-64 bg-gray-100 flex'>
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black lg:text-gray-300">
-      <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
-      </svg>
+   <form action="{{ route('Search', ['panel' => 3]) }}" method="post">
+      @csrf
+      <div class='lg:rounded-4xl p-1 lg:p-2 w-32 lg:w-64 bg-gray-100 flex lg:flex'>
       
-      <input type="text" placeholder="Search" class=" w-32 lg:pl-2 lg:w-64 ">
-      
-     <button class="lg:hidden"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black">
+      <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black lg:text-gray-300">
       <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
       </svg></button>
+      
+      <input type="text" placeholder="Search" name="search" class=" w-32 lg:pl-2 lg:w-64 ">
+      
+     <button type="submit" class="lg:hidden"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black">
+      <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
+      </svg></button>
+      
          
-         
-   </div>
+         </div>
+   
+   </form>  
    <div class="lg:pr-10 text-xl">
          
    </div>
@@ -177,21 +182,21 @@
 <div class="lg:flex lg:justify-start">
 
 
-<div class="lg:ml-80 shadow-xl h-200 bg-white lg:mt-5 lg:w-250 mt-5 mr-5 ml-5">
+<div class="lg:ml-80 shadow-xl h-230 sm:h-200 bg-white lg:mt-5 lg:w-250 mt-5 mr-5 ml-5">
    <div class="flex justify-between">
       <div>
          <h1 class="text-xl font-bold p-5">Invite Dokum</h1>
       </div>
       <div class="flex p-3">
          <div class="">
-            <a href="{{ route('BackPage', ['panel' => 1]) }}">
+            <a href="{{ route('BackPage', ['panel' => 3]) }}">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black border border-gray-300">
                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                </svg></a>
 
          </div>
          <div class="">
-           <a href="{{ route('NextPage', ['panel' => 1]) }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black border border-gray-300">
+           <a href="{{ route('NextPage', ['panel' => 3]) }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black border border-gray-300">
             <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
             </svg></a>
 

@@ -9,7 +9,7 @@ class Kas extends Model
     protected $fillable = [
         'user_id',
         'total',
-        'month',
+        'bulan',
         
     ];
     
