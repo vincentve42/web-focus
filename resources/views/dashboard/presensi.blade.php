@@ -38,9 +38,34 @@
             </ul>
        </div> 
        </nav>
-    <div class="lg:flex lg:justify-star bg-gray-100">
+    <div class="lg:flex lg:justify-start bg-gray-100">
         <div class="lg:shadow-xl lg:mt-10 lg:ml-10  bg-white lg:w-6xl lg:h-190 w-92 ml-3 h-148 mt-3">
             <h1 class="lg:text-2xl  lg:text-center lg:font-bold lg:p-3 text-center text-xl font-bold"> Riwayat Presensi</h1>
+            <table class="ml-2 lg:ml-5 justify-self-center lg:mt-5 mt-2">
+                <tr class="border-b border-gray-300">
+                    <th class="p-3 lg:p-3">ID</th><th class="p-3 lg:p-3">Tanggal</th><th class="p-3 lg:p-3">Status</th>
+                </tr>
+                @foreach ( $presensi as $single_data)
+                        <tr class="border-b border-gray-300">
+                            <td class="p-1 lg:p-3 lg:text-xl text-base">{{ $single_data->id }}</td>
+                            <td class="p-1 lg:p-3 lg:text-xl text-base">{{ $single_data->created_at }}</td>
+                            <td class="p-1 lg:p-3 lg:text-xl text-base">
+                             @if($single_data->status == 0)
+                            Hadir
+
+                        @elseif($single_data->status == 1)
+                            Izin
+                            @elseif($single_data->status == 2)
+                            Sakit
+                        @elseif($single_data->status == 3)
+                            Alpha
+
+                            @endif
+
+                        </td>
+                        </tr>
+                @endforeach
+            </table>
         </div>
         <div class="lg:shadow-xl lg:mt-10 lg:ml-10 lg:w-xl  lg:h-190 shadow-xl bg-white w-92 ml-3 mt-5">
             <h1 class="lg:text-2xl lg:w-xl lg:text-center lg:font-bold lg:p-3 font-bold text-xl ">Presensi</h1>

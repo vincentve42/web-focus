@@ -147,7 +147,7 @@
             </div>  
       </ul>
    </div>
-<div class="lg:pl-80 flex justify-between items-center w-200 lg:w-full justify-items-center pb-5 lg:pb-10 border-b border-gray-300 bg-white">
+<div class="lg:pl-80 flex justify-between items-center w-full lg:w-full justify-items-center pb-5 lg:pb-10 border-b border-gray-300 bg-white">
    <div class="lg:ml-5 ml-5 pt-5">
          <h1 class="font-bold lg:text-2xl spt-5 text-xl">Welcome Back</h1>
          <h1 class="lg:text-xl pt-1 text-xs">Hello {{ Auth::user()->name }}! what is your work today??</h1>
@@ -162,9 +162,7 @@
       
       <input type="text" placeholder="Search" name="search" class=" w-32 lg:pl-2 lg:w-64 ">
       
-     <button type="submit" class="lg:hidden"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black">
-      <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
-      </svg></button>
+     
       
          
          </div>
@@ -179,7 +177,7 @@
 <div class="lg:flex lg:justify-start">
 
 
-<div class="lg:ml-80 shadow-xl h-230 w-200 sm:h-200 bg-white lg:mt-5 lg:w-full mt-5 mr-5 ml-5">
+<div class="lg:ml-80 shadow-xl h-230 w-full sm:h-200 bg-white lg:mt-5 lg:w-full  mt-5 mr-5 ml-5">
    <div class="flex justify-between">
       <div>
          <h1 class="text-xl font-bold p-5">Kas Anggota</h1>
@@ -208,25 +206,25 @@
    <table class="ml-5  justify-start">
    
       <tr class="border-b border-black">
-         <th class=" lg:p-3 p-1 text-base">ID</th>
-         <th class=" lg:p-3 p-1 text-base">Name</th>
-         <th class=" lg:p-3 p-1 text-base">Email</th>
-         <th class=" lg:p-3 p-1 text-base">Level</th>
-         <th class=" lg:p-3 p-1 text-base">XP</th>
-         <th class=" lg:p-3 p-1 text-base">Dokumentasi</th>
-         <th class=" lg:p-3 p-1 text-base">Tanggal Daftar</th>
-         <th class=" lg:p-3 p-1 text-base">Tunggakan</th>
+         <th class=" lg:p-3 p-1 lg:text-base text-xs">ID</th>
+         <th class=" lg:p-3 p-1 lg:text-base text-xs">Name</th>
+         <th class=" lg:p-3 p-1 lg:text-base text-xs">Email</th>
+         <th class=" lg:p-3 p-1 lg:text-base text-xs">Level</th>
+         <th class=" lg:p-3 p-1 lg:text-base text-xs">XP</th>
+         <th class=" lg:p-3 p-1 lg:text-base text-xs">Dokumentasi</th>
+         
+         <th class=" lg:p-3 p-1 lg:text-base text-xs">Tunggakan</th>
          
          
       </tr>
       @foreach ($data_user as $single_data )
       <tr class="border-b border-gray-300">
-         <td class="p-1 text-center lg:text-base text-base">{{ $single_data->id }}</td>
-         <td class="p-1 text-center lg:text-base text-base">{{ $single_data->name }}</td>
-         <td class="p-1 text-center lg:text-base text-base">{{ $single_data->email }}</td>
-         <td class="p-1 text-center lg:text-base text-base">{{ $single_data->level }}</td>
-         <td class="p-1 text-center lg:text-base text-base">{{ $single_data->xp }}</td>
-         <td class="p-1 text-center lg:text-base text-base">@if ($single_data->dokumentasi == 1)
+         <td class="p-1 text-center lg:text-base text-xs">{{ $single_data->id }}</td>
+         <td class="p-1 text-center lg:text-base text-xs">{{ $single_data->name }}</td>
+         <td class="p-1 text-center lg:text-base text-xs">{{ $single_data->email }}</td>
+         <td class="p-1 text-center lg:text-base text-xs">{{ $single_data->level }}</td>
+         <td class="p-1 text-center lg:text-base text-xs">{{ $single_data->xp }}</td>
+         <td class="p-1 text-center lg:text-base text-xs">@if ($single_data->dokumentasi == 1)
             
                Ya
 
@@ -235,7 +233,7 @@
             Tidak
          @endif
       </td>
-         <td class="p-1 text-center lg:text-base text-base">{{ $single_data->created_at }}</td>
+         
          
             @foreach ($single_data->kas as $kas)
                @if($kas->bayar == 1 )
@@ -257,7 +255,7 @@
                
             @endforeach
          
-         <td class="p-1 text-center lg:text-base text-base">{{ $cek }}</td>
+         <td class="p-1 text-center lg:text-base text-xs">{{ $cek }}</td>
 
          <td class="p-1 text-center lg:text-base text-base"><a href="{{ route('ShowKasUser', ['id' => $single_data->id]) }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-green-600">
   <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z" />

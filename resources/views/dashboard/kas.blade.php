@@ -38,9 +38,31 @@
             </ul>
        </div> 
        </nav>
-    <div class="lg:flex lg:justify-start">
-        <div class="lg:shadow-xl lg:mt-10 lg:ml-10">
-            <h1 class="lg:text-2xl lg:w-8xl lg:h-190 lg:text-center lg:font-bold lg:p-3"> Kas</h1>
+    <div class="lg:flex lg:justify-start lg:h-200 ">
+        <div class="lg:shadow-xl lg:mt-10 lg:mr-10 lg:ml-10 lg:w-full">
+            <h1 class="lg:text-2xl lg:w-8xl lg:text-center lg:font-bold lg:p-3 text-center font-bold text-xl mt-10">Riwayat Kas Anda</h1>
+            <table class="lg:mt-10 mt-5  justify-self-center">
+                <tr class="border-b border-gray-300">
+                    <th class="p-3 lg:p-3">ID</th><th class="p-3 lg:p-3">Bulan</th><th class="p-3 lg:p-3">Total</th><th class="p-3 lg:p-3">Status</th>
+                </tr>
+                @foreach ($kas as $single_data )
+                <tr class="border-b border-gray-200">
+                        <td class="lg:p-2 p-1 text-center">{{ $single_data->id }}</td>
+                        <td class="lg:p-2 p-1 text-center">{{ CheckMonth($single_data->bulan)}}</td>
+                        <td class="lg:p-2 p-1">Rp.{{ number_format($single_data->total,2,',','.')}}</td>
+                        
+
+                        @if ($single_data->bayar == 0)
+                            <td class="lg:p-2 p-1 text-blue-500">Belum Di Set Pengurus</td>
+                        @elseif($single_data->bayar == 2)
+                            <td class="lg:p-2 p-1 text-red-500">Belum Dibayar</td>
+                        @elseif($single_data->bayar == 1)
+                            <td class="lg:p-2 p-1 text-green-500">Telah Dibayar</td>
+                        @endif
+                        
+                </tr>
+                @endforeach
+            </table>
         </div>
         
     </div>

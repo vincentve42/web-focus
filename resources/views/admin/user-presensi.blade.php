@@ -147,28 +147,27 @@
             </div>  
       </ul>
    </div>
-<div class="lg:pl-80 flex justify-between items-center justify-items-center pb-5 lg:pb-10 border-b border-gray-300 bg-white">
+<div class="lg:pl-80 flex justify-between items-center w-full lg:w-full justify-items-center pb-5 lg:pb-10 border-b border-gray-300 bg-white">
    <div class="lg:ml-5 ml-5 pt-5">
          <h1 class="font-bold lg:text-2xl spt-5 text-xl">Welcome Back</h1>
          <h1 class="lg:text-xl pt-1 text-xs">Hello {{ Auth::user()->name }}! what is your work today??</h1>
    </div>
-   <form action="{{ route('Search', ['panel' => 1]) }}" method="post">
+  <form action="{{ route('Search', ['panel' => 5]) }}" method="post">
       @csrf
-   <div class='lg:rounded-4xl p-1 lg:p-2 w-32 lg:w-64 bg-gray-100 flex'>
+      <div class='lg:rounded-4xl p-1 lg:p-2 w-32 lg:w-64 bg-gray-100 flex lg:flex'>
       
       <button type="submit"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black lg:text-gray-300">
       <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/>
       </svg></button>
       
-      <input type="text" name="search" placeholder="Search" class=" w-32 lg:pl-2 lg:w-64 ">
+      <input type="text" placeholder="Search" name="search" class=" w-32 lg:pl-2 lg:w-64 ">
       
      
       
          
-         
-   </div>
-   </form> 
-   </div> 
+         </div>
+   
+</form>
    <div class="lg:pr-10 text-xl">
          
    </div>
@@ -178,21 +177,21 @@
 <div class="lg:flex lg:justify-start">
 
 
-<div class="lg:ml-80 shadow-xl h-230 sm:h-200 bg-white lg:mt-5 lg:w-250 mt-5 mr-5 ml-5">
+<div class="lg:ml-80 shadow-xl h-230 w-full sm:h-200 bg-white lg:mt-5 lg:w-full mt-5 mr-5 ml-5">
    <div class="flex justify-between">
       <div>
-         <h1 class="text-xl font-bold p-5">Presensi</h1>
+         <h1 class="text-xl font-bold p-5">Kas Anggota</h1>
       </div>
       <div class="flex p-3">
          <div class="">
-            <a href="{{ route('BackPage', ['panel' => 1]) }}">
+            <a href="{{ route('BackPage', ['panel' => 5]) }}">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black border border-gray-300">
                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                </svg></a>
 
          </div>
          <div class="">
-           <a href="{{ route('NextPage', ['panel' => 1]) }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black border border-gray-300">
+           <a href="{{ route('NextPage', ['panel' => 5]) }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-black border border-gray-300">
             <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
             </svg></a>
 
@@ -207,100 +206,35 @@
    <table class="ml-5  justify-start">
    
       <tr class="border-b border-black">
-         <th class="lg:p-3 p-1 pl-5 lg:text-base text-xs">ID</th>
-         <th class="lg:p-3 p-1 lg:text-base text-xs">Nama</th>
-         <th class="lg:p-3 p-1 lg:text-base text-xs">Tanggal</th>
-         <th class="lg:p-3 p-1 lg:text-base text-xs">Status</th>
-         <th class="lg:p-3 p-1 lg:text-base text-xs">Bukti</th>
-         <th></th>
-         <th></th>
+         <th class=" lg:p-3 p-1 text-base">ID</th>
+         <th class=" lg:p-3 p-1 text-base">Name</th>
+         <th class=" lg:p-3 p-1 text-base">Email</th>
+         <th class=" lg:p-3 p-1 text-base">Level</th>
+         <th class=" lg:p-3 p-1 text-base">XP</th>
+         
+         
+         
+         
+         
       </tr>
-      @foreach ($data_presensi as $single_data )
+      @foreach ($data_user as $single_data )
       <tr class="border-b border-gray-300">
          <td class="p-1 text-center lg:text-base text-xs">{{ $single_data->id }}</td>
-         <td class="p-1 text-center lg:text-base text-xs">{{ $single_data->user->name }}</td>
-         <td class="p-1 text-center lg:text-base text-xs">{{ $single_data->created_at }}</td>
-         <td class="p-1 text-center lg:text-base text-xs"> 
-            @if($single_data->status == 0)
-               Hadir
+         <td class="p-1 text-center lg:text-base text-xs">{{ $single_data->name }}</td>
+         <td class="p-1 text-center lg:text-base text-xs">{{ $single_data->email }}</td>
+         <td class="p-1 text-center lg:text-base text-xs">{{ $single_data->level }}</td>
+         <td class="p-1 text-center lg:text-base text-xs">{{ $single_data->xp }}</td>
+         
 
-           @elseif($single_data->status == 1)
-               Izin
-            @elseif($single_data->status == 2)
-               Sakit
-
-            @endif
-         </td>
-         <td class="p-1 text-center lg:text-base text-xs">
-            <a href="https://127.0.0.0:8000/public{{ $single_data->image }}">View Image</a>
-         </td>
-         <td class="p-1"><a href="{{ route('DeleteAbsen', ['id' => $single_data->id]) }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-red-500">
-  <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+         <td class="p-1 text-center lg:text-base text-base"><a href="{{ route('ViewPresensi', ['id' => $single_data->id]) }}"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-green-600">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z" />
 </svg></a>
-</td>
-<td><a href="{{ route('ConfirmAbsen', ['id' => $single_data->id]) }}">
-   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-green-500">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-</svg></a>
-
 </td>
          </tr>
       @endforeach
    </table>
 </div>
-<div class="lg:ml-20 shadow-xl bg-white lg:mt-5 lg:mr-20 mt-5 mr-5 ml-5 lg:w-200">
-   <h1 class="text-xl font-bold p-5">Add Absen</h1>
-      <form action="{{ route('SubmitAbsen') }}" method="post" enctype="multipart/form-data">
-                @csrf
-            
-            <div class="flex items-center justify-items-center justify-self-center lg:justify-self-start mt-10 lg:pt-0 lg:text-xl lg:ml-9 lg:mt-10 mt-5 rounded-4xl p-2 bg-gray-100 lg:w-96 w-64">
-               <div class="p-1 pt-2">
-               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-gray-300">
-               <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-               </svg>
-               </div>
-               <div class=" pt-1">
-                    <input type="text" name="name" id="" placeholder="Nama Anggota" class="lg:text-left text-left p-1 ">
-               </div>
-                </div>
-            <div class="lg:flex lg:justify-self-start lg:pt-5 lg:items-center lg:justify-items-center">
-                <div class="justify-self-center lg:justify-self-start pt-10 lg:pt-0 lg:text-xl lg:ml-10">
-                    <label for="status">Status Kehadiran : </label>
-                </div>
-                <div class="justify-self-center lg:justify-self-start lg:ml-2">
-                    <select id="status" name="status" class=" text-xl p-2">
-                        <option value="0">Hadir</option>
-                        <option value="1">Izin</option>
-                        <option value="2">Sakit</option>
-                    
-                    </select>
-                </div>
-            </div>
-            <div class="lg:flex lg:justify-start lg:items-center lg:justify-items-center pt-5 lg:ml-7">
-                <div class="  justify-self-center lg:justify-self-start lg:ml-3">
-                    <label class="text-xl"  for="">Bukti Foto : </label>
-                </div>
-                <div class="justify-self-center lg:justify-self-start  bg-gray-50 rounded-4xl lg:w-96 lg:ml-3 p-1 mt-1">
-                    <input type="file" name="image" id="" class="text-xs lg:text-xl">
-                </div>
-                
-            </div>
-         
-             @if ($errors->any())
-               <div class="pt-5 justify-self-center  lg:text-xs lg:ml-5 lg:justify-self-start text-red-500">
-               <ul>
-               @foreach ($errors->all() as $error)
-               <li>{{ $error }}</li>
-               @endforeach
-               </ul>
-               </div>
-               @endif  
-               
-            <div class="justify-self-center lg:justify-self-center  pt-10">
-                    <button type="submit" class="border border-indigo-500 p-1 rounded-4xl w-32 mb-5">Kirim</button>
-                </div>
-            </form>
-</div>
+
 </div>
 </body>
 

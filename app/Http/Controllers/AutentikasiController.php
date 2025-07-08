@@ -40,6 +40,7 @@ class AutentikasiController extends Controller
         try
         {
             $newuser->save();
+            SendNotif($newuser,"User Baru","User bernama ".$newuser->name." Telah mendaftar ke dalam aplikasi",1);
             for($i=1; $i<12; $i++)
             {
                 $kas = new Kas;
@@ -48,6 +49,7 @@ class AutentikasiController extends Controller
                 $kas->save();
 
             }
+            
             return redirect()->route('LoginUi');
         }
         catch(Exception $e)

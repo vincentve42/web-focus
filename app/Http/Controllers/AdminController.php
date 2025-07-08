@@ -7,14 +7,71 @@ use App\Models\Notif;
 use App\Models\Pengeluaran;
 use App\Models\Presensi;
 use App\Models\User;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use Exception;
+use IcehouseVentures\LaravelChartjs\Facades\Chartjs;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     public function DashboardUi()
     {
-        return view('admin/index');
+        $count_user = User::count();
+        $count_presensi = Presensi::count();
+        $count_high = User::orderBy('xp','desc')->first();
+        $count_dokum = User::where('dokumentasi', 1)->count();
+        // Chart
+
+        
+        $start = Carbon::parse(User::min("created_at"));
+        $end = Carbon::now();
+        $period = CarbonPeriod::create($start, "1 month", $end);
+
+        $usersPerMonth = collect($period)->map(function ($date) {
+            $endDate = $date->copy()->endOfMonth();
+
+            return [
+                "count" => User::where("created_at", "<=", $endDate)->count(),
+                "month" => $endDate->format("Y-m-d")
+            ];
+        });
+
+        $data = $usersPerMonth->pluck("count")->toArray();
+        $labels = $usersPerMonth->pluck("month")->toArray();
+
+        $chart = Chartjs::build()
+            ->name("UserRegistrationsChart")
+            ->type("line")
+            ->size(["width" => 400, "height" => 200])
+            ->labels($labels)
+            ->datasets([
+                [
+                    "label" => "Grafik Pendaftaran User",
+                    "backgroundColor" => "rgba(38, 185, 154, 0.31)",
+                    "borderColor" => "rgba(38, 185, 154, 0.7)",
+                    "data" => $data
+                ]
+            ])
+            ->options([
+                'scales' => [
+                    'x' => [
+                        'type' => 'time',
+                        'time' => [
+                            'unit' => 'month'
+                        ],
+                        'min' => $start->format("Y-m-d"),
+                    ]
+                ],
+                'plugins' => [
+                    'title' => [
+                        'display' => true,
+                        'text' => 'Monthly User Registrations'
+                    ]
+                ]
+            ]);
+
+        return view('admin/index',compact('count_presensi','count_user','count_high','count_dokum','chart'));
     }
     public function PresensiUi()
     {
@@ -23,14 +80,15 @@ class AdminController extends Controller
         session()->put('count',20);
         return view('admin.presensi',compact('data_presensi'));
     }
+    
     public function ConfirmAbsen($id)
     {
         $selected = Presensi::find($id);
         $selected->accepted = 1;
         $selected->saveQuietly();
         $data = $selected->user;
-        $judul = "Naik Level";
-        $isi = "Absen anda diterima, silahkan hubungi pengurus jika ada kesalahan";
+        $judul = "Absen Diterima";
+        $isi = "Absen anda diterima";
         SendNotif($data, $judul, $isi, 0);
         return redirect()->back();
     }
@@ -46,7 +104,7 @@ class AdminController extends Controller
         }
         // Notifikasi
          
-        $judul = "Naik Level";
+        $judul = "Absen Ditolak";
         $isi = "Absen anda ditolak, silahkan hubungi pengurus jika ada kesalahan";
         SendNotif($data, $judul, $isi, 0);
         //
@@ -69,7 +127,7 @@ class AdminController extends Controller
         
         try{
             $presensi->save();
-            return redirect()->back();
+            return redirect()->route('PresensiUi');
         }
         catch(Exception $e)
         {
@@ -113,6 +171,13 @@ class AdminController extends Controller
             // fOR Debugging
             //return $count;
         }
+        if($panel == 5)
+        {
+            $data_user = User::skip($count)->take(20)->get();
+            return view('admin.user-kas',compact('data_user'));
+            // fOR Debugging
+            //return $count;
+        }
         
     }
     public function BackPage($panel)
@@ -145,6 +210,13 @@ class AdminController extends Controller
             return view('admin.invite-dokum',compact('data_user'));
         }
         if($panel == 4)
+        {
+            $data_user = User::skip($count)->take(20)->get();
+            return view('admin.user-kas',compact('data_user'));
+            // fOR Debugging
+            //return $count;
+        }
+        if($panel == 5)
         {
             $data_user = User::skip($count)->take(20)->get();
             return view('admin.user-kas',compact('data_user'));
@@ -250,6 +322,7 @@ class AdminController extends Controller
         else
         {
             $data_user->dokumentasi = 1;
+            SendNotif($data_user,"Undangan Dokumentasi","Anda di undang untuk melakukan dokumentasi silahkan isi form ini",0);
             $data_user->save();
         }
         return redirect()->back();
@@ -355,6 +428,14 @@ class AdminController extends Controller
             return view('admin.presensi',compact('data_presensi'));
             //return $count;
         }
+        if($panel == 6)
+        {
+            $data_gg = User::where('name', $request->search)->first();
+            $data_presensi = Presensi::where('user_id',$data_gg->id)->get();
+            //return dd($data_presensi);
+            return view('admin.presensi',compact('data_presensi'));
+            //return $count;
+        }
         if($panel == 2)
         {
             $data_keuangan = Pengeluaran::where('keterangan_1',$request->search)->get();
@@ -375,6 +456,38 @@ class AdminController extends Controller
             // fOR Debugging
             //return $count;
         }
+        if($panel == 5)
+        {
+            $data_user = User::where('name',$request->search)->get();
+            return view('admin.user-presensi',compact('data_user'));
+            // fOR Debugging
+            //return $count;
+        }
         
     }
+    public function NotifUi(){
+        
+        $notif = Notif::where('admin',1)->orderBy('id','desc')->get();
+        return view('admin.notif',compact('notif'));
+    }
+    public function PresensiAllUi(){
+        
+       
+        $data_user = User::take(20)->get();
+        
+        session()->put('page',1);
+        session()->put('count',20);
+        return view('admin.user-presensi',compact('data_user'));
+        
+    }
+    public function ViewPresensi($id){
+        
+        $data_presensi = Presensi::orderBy('id','desc')->get();
+        
+        session()->put('page',1);
+        session()->put('count',20);
+        return view('admin.presensi',compact('data_presensi'));
+        
+    }
+
 }

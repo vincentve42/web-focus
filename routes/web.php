@@ -19,6 +19,10 @@ Route::middleware([LoggedInCheckerAsUser::class])->group(function (){
     Route::get('/home',[HomeController::class, 'HomeUi'])->name('HomeUi');
     Route::get('/absen',[HomeController::class, 'PresensiHomeUi'])->name('PresensiHomeUi');
     Route::post('/absen',[HomeController::class, 'SubmitAbsen'])->name('SubmitAbsen');
+    // Kas
+    Route::get('kas', [HomeController::class,'KasHomeUi'])->name('KasHomeUi');
+    // Notif
+    Route::get('notif', [HomeController::class,'NotifHomeUi'])->name('NotifHomeUi');
 });
 Route::middleware([AdminChecker::class])->group(function (){
     // Dashboard
@@ -28,6 +32,9 @@ Route::middleware([AdminChecker::class])->group(function (){
     // Absen / Presensi
 
     Route::get('/admin/presensi',[AdminController::class,'PresensiUi'])->name('PresensiUi');
+    Route::get('/admin/presensi-user',[AdminController::class,'PresensiAllUi'])->name('PresensiAllUi');
+     Route::get('/admin/presensi-view/{id}',[AdminController::class,'ViewPresensi'])->name('ViewPresensi');
+   
     Route::get('/admin/presensi/delete/{id}',[AdminController::class,'DeleteAbsen'])->name('DeleteAbsen');
     Route::get('/admin/presensi/confirm/{id}',[AdminController::class,'ConfirmAbsen'])->name('ConfirmAbsen');
 
@@ -58,10 +65,14 @@ Route::middleware([AdminChecker::class])->group(function (){
 
     // nOTIF
 
-    Route::post('home/dokum',[ChatController::class, 'ChatUi'])->name('ChatUi');
+    Route::get('admin/notif', [AdminController::class,'NotifUi'])->name('NotifUi');
 
     // Search
 
     Route::post('admin/search/{panel}',[AdminController::class, 'Search'])->name('Search');
+
+    
     
 });
+
+Route::get('chat', [AdminController::class,'NotifUi'])->name('ChatUi');
