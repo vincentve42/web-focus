@@ -12,33 +12,33 @@
                 <div class="text-white">
                     <div class="p-6">
                         <ul class="lg:flex hidden">
-                            <li class="font-bold text-xl">Home</li>
-                            <li class="font-bold pl-5 text-xl">Presensi</li>
-                            <li class="font-bold pl-5 text-xl">Kas</li>
+                            <a href="{{ route('HomeUi') }}"><li class="font-bold text-xl text-white">Home</li></a>
+                            <a href="{{ route('PresensiHomeUi') }}"><li class="font-bold pl-5 text-xl text-white">Presensi</li></a>
+                            <a href="{{ route('KasHomeUi') }}"><li class="font-bold pl-5 text-xl text-white">Kas</li></a>
                         </ul>
-                        <button @click="navbar = !navbar;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10 lg:hidden text-black">
+                        <button @click="navbar = !navbar;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10 lg:hidden text-white">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg></button>
                     </div>
                     
                 </div>
             
-            <div class="p-5">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10">
+            <div class="p-5"><a href="{{ route('NotifHomeUi') }}">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10 text-white">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
-                </svg>
+                </svg></a>
 
             </div>
         </div>
         <div x-show="navbar" class="lg:hidden bg-indigo-500">
         <ul>
-            <li class="font-bold text-xl pl-1 border-b border-black">Home</li>
-            <li class="font-bold text-xl pl-1 border-b border-black">Presensi</li>
-            <li class="font-bold text-xl pl-1 border-b border-black">Kas</li>
+            <a href="{{ route('HomeUi') }}"><li class="font-bold text-xl pl-1 border-b text-white border-white">Home</li></a>
+            <a href="{{ route('PresensiHomeUi') }}"><li class="font-bold text-xl pl-1 border-b text-white border-white">Presensi</li></a>
+            <a href="{{ route('KasHomeUi') }}"><li class="font-bold text-xl pl-1 border-b text-white border-white">Kas</li></a>
             </ul>
        </div>
        </nav>
-    <div id="notif"  class="lg:w-450 lg:ml-10 lg:mt-10 lg:mr-10 ml-5 mt-5 mr-5 shadow-2xl">
+    <div id="notif"  class="lg:w-450 lg:ml-10 lg:h-200 h-130 lg:mt-10 lg:mr-10 ml-5 mt-5 mr-5 shadow-2xl overflow-auto">
         
         <h1 class="font-bold lg:text-2xl text-xl lg:ml-5 ml-8 pt-3 pb-3">Notifikasi</h1>
         <div class="mt-2 lg:mt-5 ml-5">

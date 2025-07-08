@@ -57,4 +57,8 @@ class User extends Authenticatable
     public function notif() : HasMany{
         return $this->hasMany(Notif::class);
     }
+    public function chat() : HasMany{
+        return $this->hasMany(Chat::class);
+    }
+
 }

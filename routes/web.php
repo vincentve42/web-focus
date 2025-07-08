@@ -5,6 +5,7 @@ use App\Http\Controllers\AutentikasiController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\HomeController;
 use App\Http\Middleware\AdminChecker;
+use App\Http\Middleware\ChatChecker;
 use App\Http\Middleware\GuestChecker;
 use App\Http\Middleware\LoggedInCheckerAsUser;
 use Illuminate\Support\Facades\Route;
@@ -75,4 +76,5 @@ Route::middleware([AdminChecker::class])->group(function (){
     
 });
 
-Route::get('chat', [AdminController::class,'NotifUi'])->name('ChatUi');
+Route::get('chat', [ChatController::class,'ChatUi'])->name('ChatUi')->middleware([ChatChecker::class]);
+Route::post('chat', [ChatController::class,'SendMessage'])->name('SendMessage')->middleware([ChatChecker::class]);
