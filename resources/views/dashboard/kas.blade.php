@@ -15,6 +15,9 @@
                             <a href="{{ route('HomeUi') }}"><li class="font-bold text-xl text-white">Home</li></a>
                             <a href="{{ route('PresensiHomeUi') }}"><li class="font-bold pl-5 text-xl text-white">Presensi</li></a>
                             <a href="{{ route('KasHomeUi') }}"><li class="font-bold pl-5 text-xl text-white">Kas</li></a>
+                            @if (Auth::user()->dokumentasi == 1)
+                            <a href="{{ route('ChatUi') }}"><li class="font-bold pl-5 text-xl text-white">Room Dokum</li></a>
+                            @endif
                         </ul>
                         <button @click="navbar = !navbar;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10 lg:hidden text-white">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -35,6 +38,9 @@
             <a href="{{ route('HomeUi') }}"><li class="font-bold text-xl pl-1 border-b text-white border-white">Home</li></a>
             <a href="{{ route('PresensiHomeUi') }}"><li class="font-bold text-xl text-white pl-1 border-b border-white">Presensi</li></a>
             <a href="{{ route('KasHomeUi') }}"><li class="font-bold text-xl pl-1 text-white border-b border-white">Kas</li></a>
+            @if (Auth::user()->dokumentasi == 1)
+                 <a href="{{ route('ChatUi') }}"><li class="font-bold text-xl text-white pl-1 border-b border-white">Roomchat Dokumentasi</li></a>
+            @endif
             </ul>
        </div>
        </nav>
