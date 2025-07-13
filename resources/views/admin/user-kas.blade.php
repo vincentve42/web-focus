@@ -3,7 +3,22 @@
 <head>
 <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         @vite('./resources/css/app.css')
+         @php
+    $isProduction = app()->environment('production');
+    $manifestPath = $isProduction ? '../focus.vecode.my.id/build/manifest.json' : public_path('build/manifest.json');
+ @endphp
+ 
+  @if ($isProduction && file_exists($manifestPath))
+   @php
+    $manifest = json_decode(file_get_contents($manifestPath), true);
+   @endphp
+    <link rel="stylesheet" href="{{ config('app.url') }}/build/{{ $manifest['resources/css/app.css']['file'] }}">
+    <script type="module" src="{{ config('app.url') }}/build/{{ $manifest['resources/js/app.js']['file'] }}"></script>
+  @else
+    @viteReactRefresh
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
+  @endif
+ 
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
          
 </head>
@@ -80,6 +95,15 @@
 
             <li class="text-xl pl-2">Notifikasi</li>
             </div>  </a>
+            <a href="{{ route("Logout") }}"><div class="flex justify-start items-center justify-items-center pt-1 text text-red-500">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M22 10.5h-6m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM4 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 10.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+</svg>
+
+
+
+            <li class="text-xl pl-2 text-white text-red-500">Logout</li>
+            </div>  </a>
       </ul>
    </div>
 </aside>
@@ -149,6 +173,21 @@
 
             <li class="text-xl pl-2">Notifikasi</li>
             </div>  </a> 
+<a href="{{ route('Logout') }}"><div class="flex justify-start items-center justify-items-center pt-1 text-red-500">
+           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M22 10.5h-6m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM4 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 10.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+</svg>
+
+
+
+
+            <li class="text-xl pl-2 text-red-500">Logout</li>
+            </div>  </a> 
+            
+            
+            
+            
+            
       </ul>
    </div>
 <div class="lg:pl-80 flex justify-between items-center w-full lg:w-full justify-items-center pb-5 lg:pb-10 border-b border-gray-300 bg-white">

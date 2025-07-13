@@ -2,7 +2,22 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         @vite('./resources/css/app.css')
+         @php
+    $isProduction = app()->environment('production');
+    $manifestPath = $isProduction ? '../focus.vecode.my.id/build/manifest.json' : public_path('build/manifest.json');
+ @endphp
+ 
+  @if ($isProduction && file_exists($manifestPath))
+   @php
+    $manifest = json_decode(file_get_contents($manifestPath), true);
+   @endphp
+    <link rel="stylesheet" href="{{ config('app.url') }}/build/{{ $manifest['resources/css/app.css']['file'] }}">
+    <script type="module" src="{{ config('app.url') }}/build/{{ $manifest['resources/js/app.js']['file'] }}"></script>
+  @else
+    @viteReactRefresh
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
+  @endif
+ 
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
          
     </head>
@@ -18,6 +33,10 @@
                             @if (Auth::user()->dokumentasi == 1)
                             <a href="{{ route('ChatUi') }}"><li class="font-bold pl-5 text-xl text-white">Room Dokum</li></a>
                             @endif
+                            @if (Auth::user()->admin == 1)
+                            <a href="{{ route('DashboardUi') }}"><li class="font-bold pl-5 text-xl text-white">Admin Dashboard</li></a>
+                            @endif
+                            <a href="{{ route('Logout') }}"><li class="font-bold pl-5 text-xl text-red">Logout</li></a>
                         </ul>
                         <button @click="navbar = !navbar;"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10 lg:hidden text-white">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -41,6 +60,10 @@
             @if (Auth::user()->dokumentasi == 1)
                  <a href="{{ route('ChatUi') }}"><li class="font-bold text-xl text-white pl-1 border-b border-white">Chat</li></a>
             @endif
+            @if (Auth::user()->admin == 1)
+                 <a href="{{ route('DashboardUi') }}"><li class="font-bold text-xl text-white pl-1 border-b border-white">Admin Dashboard</li></a>
+            @endif
+            <a href="{{ route('Logout') }}"><li class="font-bold text-xl text-red pl-1 border-b border-white">Logout</li></a>
             </ul>
        </div>
        </nav>
