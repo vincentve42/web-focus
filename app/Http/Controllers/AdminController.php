@@ -12,6 +12,8 @@ use Carbon\CarbonPeriod;
 use Exception;
 use IcehouseVentures\LaravelChartjs\Facades\Chartjs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class AdminController extends Controller
 {
@@ -488,6 +490,17 @@ class AdminController extends Controller
         session()->put('count',20);
         return view('admin.presensi',compact('data_presensi'));
         
+        
+    }
+    public function ViewImage($img_path)
+    {
+        $dirfile = $img_path;
+        return view('admin.view-image', compact('dirfile'));
+    }
+    public function Logout()
+    {
+        Auth::logout();
+        return redirect()->route('LoginUi');
     }
 
 }

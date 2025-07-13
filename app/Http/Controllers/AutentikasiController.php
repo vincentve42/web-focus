@@ -32,30 +32,26 @@ class AutentikasiController extends Controller
         $newuser->name = $request->name;
         $newuser->email = $request->email;
         $newuser->password = $request->password;
-
+        $newuser->admin = 0;
         
 
         // create kas
         
-        try
-        {
+        
             $newuser->save();
-            SendNotif($newuser,"User Baru","User bernama ".$newuser->name." Telah mendaftar ke dalam aplikasi",1);
+            SendNotif($newuser,"User Baru","User bernama ".$newuser->name." Telah mendaftar ke dalam aplikasi",0);
             for($i=1; $i<12; $i++)
-            {
+            
                 $kas = new Kas;
                 $kas->bulan = $i;
                 $kas->user()->associate($newuser);
                 $kas->save();
 
-            }
+          
             
             return redirect()->route('LoginUi');
-        }
-        catch(Exception $e)
-        {
-            return $e;
-        }
+        
+        
         
     }
     public function Login(Request $request)
@@ -66,11 +62,11 @@ class AutentikasiController extends Controller
             if(Auth::attempt($cek))
             {
                 $request->session()->regenerate();
-                return "Anda Berhasil Login";
+                return redirect()->route('HomeUi');
             }
             else
             {
-                return "Gagal Login";
+                return redirect()->back()->withErrors("Username atau Password anda tidak cocok");
             }
         }
         catch(Exception $e)
