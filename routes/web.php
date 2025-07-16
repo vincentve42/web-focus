@@ -46,7 +46,7 @@ Route::middleware([AdminChecker::class])->group(function (){
     // Dokumentasi Panel
     Route::get('admin/invite-user',[AdminController::class, 'InviteDokumUi'])->name('InviteDokumUi');
     Route::post('admin/invite-user',[AdminController::class, 'RewardUser'])->name('RewardUser');
-    Route::get('admin/invite/{id}',[AdminController::class, 'InviteDokum'])->name('InviteDokum')
+    Route::get('admin/invite/{id}',[AdminController::class, 'InviteDokum'])->name('InviteDokum');
     // Kas
     Route::get('admin/user-kas',[AdminController::class, 'ShowUserKasUi'])->name('ShowUserKasUi');
     Route::get('admin/edit-kas/{id}',[AdminController::class, 'ShowKasUser'])->name('ShowKasUser');

@@ -39,7 +39,7 @@ class AutentikasiController extends Controller
         
         
             $newuser->save();
-            SendNotif($newuser,"User Baru","User bernama ".$newuser->name." Telah mendaftar ke dalam aplikasi",0);
+            SendNotif($newuser,"User Baru","User bernama ".$newuser->name." Telah mendaftar ke dalam aplikasi",1);
             for($i=1; $i<12; $i++)
             
                 $kas = new Kas;
